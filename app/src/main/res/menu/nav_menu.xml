@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_serach"
+        android:title="검색"
+        />
+    <item
+        android:id="@+id/nav_reservation_check"
+        android:title="예약 확인"
+        />
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+    <item
+        android:id="@+id/nav_create_and_management"
+        android:title="생성 및 관리"
+        />
+    <item
+        android:id="@+id/nav_my"
+        android:title="MY"
+        android:icon="@drawable/ic_baseline_person_24"
+        />
+
+</menu>

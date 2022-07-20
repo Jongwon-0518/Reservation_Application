@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height= "48dp"
+            android:layout_margin="10dp"
+            android:hint="방 이름"
+            android:textSize="20sp"
+            android:selectAllOnFocus="true"
+            android:maxLength="10" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height= "wrap_content"
+            android:maxLines="10"
+            android:layout_margin="10dp"
+            android:hint="소개 글"
+            android:textSize="20sp"
+            android:selectAllOnFocus="true"
+            android:maxLength="100" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            android:text="Private" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height= "48dp"
+            android:layout_margin="10dp"
+            android:hint="Password for private"
+            android:textSize="15sp"
+            android:selectAllOnFocus="true"
+            android:maxLength="8" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            android:text="Location" />
+
+
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_margin="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" >
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MapsActivity"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                />
+
+
+        </com.google.android.gms.maps.MapView>
+
+
+    </LinearLayout>
+</ScrollView>
