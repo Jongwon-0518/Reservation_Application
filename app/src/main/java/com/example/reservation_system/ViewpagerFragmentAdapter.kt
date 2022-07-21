@@ -52,12 +52,12 @@ class Reservations : Fragment() {
     }
 
 }
-// ㅇ
-// ㅇ
-// ㅇ
-// ㅇ
-// ㅇ
-// ㅇ
+// x
+// x
+// x
+// x
+// x
+// x
 class Search : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
