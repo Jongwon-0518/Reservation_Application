@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager2 = findViewById(R.id.view_pager2)
 
         viewPager.post {
-            // 메인화면 2번
+            // 키자마자 메인화면 2번
             viewPager.setCurrentItem(2, true)
         }
 
