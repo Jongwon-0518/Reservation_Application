@@ -45,19 +45,17 @@ class Mypage : Fragment() {
 class Reservations : Fragment() {
 
 
-    var a = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reservations, container, false)
-        println(a)
     }
 
 }
-// x
-// x
-// x
-// x
-// x
-// x
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
 class Search : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
