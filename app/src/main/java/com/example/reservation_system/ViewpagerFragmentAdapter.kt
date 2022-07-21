@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import kotlinx.android.synthetic.main.fragment_search.*
 
 class ViewpagerFragmentAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 
@@ -42,16 +44,24 @@ class Mypage : Fragment() {
 
 class Reservations : Fragment() {
 
+
+    var a = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reservations, container, false)
+        println(a)
     }
 
 }
-
+// ㅇ
+// ㅇ
+// ㅇ
+// ㅇ
+// ㅇ
+// ㅇ
 class Search : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
-
 }
