@@ -50,12 +50,7 @@ class Reservations : Fragment() {
     }
 
 }
-// 1
-// 2
-// 3
-// 4
-// 5
-// 6
+
 class Search : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
