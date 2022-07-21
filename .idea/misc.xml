@@ -24,9 +24,11 @@
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_create_and_management2.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_my.xml" value="0.5411458333333333" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_mypage.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_reservation_check.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_reservation_chk.xml" value="0.5411458333333333" />
-        <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_search.xml" value="0.5411458333333333" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_reservations.xml" value="0.33" />
+        <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/fragment_search.xml" value="0.5" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/layout.xml" value="0.5411458333333333" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/make_room.xml" value="0.4053442028985507" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/layout/make_time.xml" value="0.5411458333333333" />
