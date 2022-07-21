@@ -25,36 +25,3 @@ class ViewpagerFragmentAdapter(fragmentActivity: FragmentActivity): FragmentStat
         return fragmentList[position]
     }
 }
-
-class CreateManage : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_createmanage, container, false)
-    }
-
-}
-
-class Mypage : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_mypage, container, false)
-    }
-
-}
-
-class Reservations : Fragment() {
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_reservations, container, false)
-    }
-
-}
-
-class Search : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(R.layout.fragment_search, container, false)
-    }
-}
