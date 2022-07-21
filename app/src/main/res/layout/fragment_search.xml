@@ -6,14 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Search">
 
-    <androidx.appcompat.widget.SearchView
+    <SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="검색어를 입력하시오" />
+        android:iconifiedByDefault="false"
+        android:queryHint="검색어를 입력하시오. (코드검색 : #)"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
