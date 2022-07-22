@@ -13,9 +13,9 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/make_room_button"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:id="@+id/make_room_button"
             android:layout_margin="5dp"
             android:text="+ Make Room"
             android:textStyle="bold"
