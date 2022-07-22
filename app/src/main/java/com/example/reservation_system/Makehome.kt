@@ -16,8 +16,8 @@ class Makehome : AppCompatActivity() {
 
         makeroomcompleteBtn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("location", 3)
             startActivity(intent)
         }
-
     }
 }

@@ -23,9 +23,11 @@ class MainActivity : AppCompatActivity() {
         // 1) ViewPager2 참조
         val viewPager: ViewPager2 = findViewById(R.id.view_pager2)
 
+        val screen_location = intent.getIntExtra("location", 2)
+
         viewPager.post {
             // 키자마자 메인화면 2번
-            viewPager.setCurrentItem(2, true)
+            viewPager.setCurrentItem(screen_location, true)
         }
 
         // 2) FragmentStateAdapter 생성 : Fragment 여러개를 ViewPager2에 연결해주는 역할
