@@ -1,5 +1,6 @@
 package com.example.reservation_system
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         // 1) ViewPager2 참조
         val viewPager: ViewPager2 = findViewById(R.id.view_pager2)
-
+        // defaultvalue main화면 2번
         val screen_location = intent.getIntExtra("location", 2)
 
         viewPager.post {
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = viewpagerFragmentAdapter
         viewPager.registerOnPageChangeCallback( PageChangeCallback() )
         bottomNavigationView.setOnNavigationItemSelectedListener { navigationSelected(it) }
+
     }
 
     // BottomNav Menu

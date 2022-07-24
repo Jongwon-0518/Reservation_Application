@@ -1,5 +1,6 @@
 package com.example.reservation_system
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,25 +12,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.room_list.view.*
 
-// 서버에서 가져올 title, information 데이터들을 room_Data type으로 만들고 Arraylist에 담음
-class room_Data(room_title : String, room_info : String){
-    var title = room_title
-    var information = room_info
-}
 class Home : Fragment() {
 
     lateinit var recyclerView1: RecyclerView
 
     // TODO : 서버의 데이터베이스와 연결
     val DataList = arrayListOf(
-        room_Data("1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다."),
-        room_Data("2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다."),
-        room_Data("3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요."),
-        room_Data("4번방", "4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다."),
-        room_Data("5번방", "5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방"),
-        room_Data("6번방", "6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다."),
-        room_Data("7번방", "7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물"),
-        room_Data("8번방", "8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~")
+        room_Data("1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1),
+        room_Data("2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다.", 2),
+        room_Data("3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요.", 3),
+        room_Data("4번방", "4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다.", 4),
+        room_Data("5번방", "5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방", 5),
+        room_Data("6번방", "6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다.", 6),
+        room_Data("7번방", "7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물", 7),
+        room_Data("8번방", "8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~", 8)
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,6 +44,7 @@ class Home : Fragment() {
     inner class HomeRecyclerViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val title: TextView = v.room_tittle
         val information : TextView = v.room_info
+        val code : TextView = v.room_code
     }
 
     // 리사이클러 뷰 어댑터
@@ -62,6 +59,7 @@ class Home : Fragment() {
         override fun onBindViewHolder(holder: HomeRecyclerViewHolder, position: Int) {
             holder.title.text = room_data_list[position].title
             holder.information.text = room_data_list[position].information
+            holder.code.text = room_data_list[position].code.toString()
         }
 
         override fun getItemCount() = room_data_list.size
