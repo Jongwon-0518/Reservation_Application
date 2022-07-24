@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.reservation_system.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_createmanage.*
 
 
