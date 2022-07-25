@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Reservation_Application/app/src/main/res/drawable/baseline_add_circle_24.xml" value="0.2205" />
+        <entry key="..\:/Reservation_Application/app/src/main/res/drawable/baseline_dashboard_customize_24.xml" value="0.2205" />
+        <entry key="..\:/Reservation_Application/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2205" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/activity_main.xml" value="0.20729166666666668" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_createmanage.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_home.xml" value="0.27708333333333335" />
@@ -11,6 +14,7 @@
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_search.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/make_room.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/make_time.xml" value="0.27708333333333335" />
+        <entry key="..\:/Reservation_Application/app/src/main/res/layout/reservation_list.xml" value="0.19250253292806485" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/room_list.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/menu/nav_menu.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/82109/AndroidStudioProjects/reservation_system/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.45555555555555555" />
