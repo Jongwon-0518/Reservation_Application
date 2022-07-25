@@ -11,6 +11,12 @@ class RoomInformation : AppCompatActivity() {
         setContentView(R.layout.room_information)
 
         val room_number = intent.getIntExtra("code", 0)
-        room_code_TextView.text = room_number.toString()
+        val code_string = "#" + room_number.toString()
+        room_code_TextView.text = code_string
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
 }

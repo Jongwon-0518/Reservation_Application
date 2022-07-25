@@ -45,6 +45,21 @@ class Home : Fragment() {
         val title: TextView = v.room_tittle
         val information : TextView = v.room_info
         val code : TextView = v.room_code
+
+        fun bind(item: room_Data) {
+            title.text = item.title
+            information.text = item.information
+            code.text = item.code.toString()
+
+            itemView.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(context, RoomInformation::class.java)
+                    intent.putExtra("code", item.code)
+                    startActivity(intent)
+                    activity!!.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+                }
+            }
+        }
     }
 
     // 리사이클러 뷰 어댑터
@@ -57,9 +72,7 @@ class Home : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeRecyclerViewHolder, position: Int) {
-            holder.title.text = room_data_list[position].title
-            holder.information.text = room_data_list[position].information
-            holder.code.text = room_data_list[position].code.toString()
+            holder.bind(room_data_list[position])
         }
 
         override fun getItemCount() = room_data_list.size

@@ -67,7 +67,7 @@ class Reservations : Fragment() {
                     val intent = Intent(context, RoomInformation::class.java)
                     intent.putExtra("code", item.code)
                     startActivity(intent)
-                    activity!!.overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+                    activity!!.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }
