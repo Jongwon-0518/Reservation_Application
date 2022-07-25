@@ -16,7 +16,12 @@ class Makeroom : AppCompatActivity() {
         Make_room_complete.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("location", 3)
-            startActivity(intent)
+            this.finish()
         }
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
 }
