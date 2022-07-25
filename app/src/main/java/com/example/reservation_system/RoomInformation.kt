@@ -10,9 +10,14 @@ class RoomInformation : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.room_information)
 
+        // TODO : 나머지 부분도 채우기
         val room_number = intent.getIntExtra("code", 0)
         val code_string = "#" + room_number.toString()
         room_code_TextView.text = code_string
+
+        button_back.setOnClickListener{
+            this.finish()
+        }
     }
 
     override fun finish() {

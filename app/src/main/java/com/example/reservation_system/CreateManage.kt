@@ -11,19 +11,15 @@ import androidx.fragment.app.Fragment
 
 class CreateManage : Fragment() {
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_createmanage, container, false)
         val makehomeBtn : Button = view.findViewById(R.id.make_room_button)
         makehomeBtn.setOnClickListener {
-            activity?.let{
+            activity?.let {
                 val intent = Intent(context, Makehome::class.java)
                 startActivity(intent)
             }
         }
-
-
         return view
     }
-
 }
