@@ -6,15 +6,14 @@ import android.os.PersistableBundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.make_room.*
 
 class Makehome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.make_room)
 
-        val makeroomcompleteBtn = findViewById<Button>(R.id.Make_room_complete)
-
-        makeroomcompleteBtn.setOnClickListener{
+        Make_room_complete.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("location", 3)
             startActivity(intent)
