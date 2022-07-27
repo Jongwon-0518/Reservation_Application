@@ -1,5 +1,6 @@
 package com.example.reservation_system
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.room_information.*
@@ -17,6 +18,12 @@ class RoomInformation : AppCompatActivity() {
 
         button_back.setOnClickListener{
             this.finish()
+        }
+
+        button_goreservation.setOnClickListener{
+            val intent = Intent(this, MakeReservation::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
     }
 

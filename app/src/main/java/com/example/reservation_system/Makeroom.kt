@@ -23,8 +23,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         Make_room_complete.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("location", 3)
             this.finish()
         }
     }
@@ -35,8 +33,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(marker).title("마커 제목"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
     }
-
-
 
     override fun finish() {
         super.finish()
