@@ -21,7 +21,7 @@ class RoomInformation : AppCompatActivity() {
         }
 
         button_goreservation.setOnClickListener{
-            val intent = Intent(this, MakeReservation::class.java)
+            val intent = Intent(this, ReservationMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }

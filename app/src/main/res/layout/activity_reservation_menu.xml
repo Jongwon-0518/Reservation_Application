@@ -4,34 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MakeReservation"
+    tools:context=".ReservationMenu"
     android:orientation="vertical"
-    android:padding="20dp"
+
     >
 
-    <CalendarView
-        android:id="@+id/calendar"
+    <Button
+        android:id="@+id/menu1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="메뉴1"
+        android:layout_margin = "20dp"
         />
-
-    <TextView
-        android:id="@+id/cal_text"
+    <Button
+        android:id="@+id/menu2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="날짜를 선택해 주세요"
-        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="메뉴2"
+        android:layout_margin = "20dp"
+        />
+    <Button
+        android:id="@+id/menu3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="메뉴3"
+        android:layout_margin = "20dp"
         />
 
-    <LinearLayout
-        android:id="@+id/button_reservation_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
 
-
-    </LinearLayout>
 
 
 </LinearLayout>
