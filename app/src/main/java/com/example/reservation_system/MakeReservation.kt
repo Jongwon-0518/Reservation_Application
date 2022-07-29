@@ -68,6 +68,7 @@ class MakeReservation : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("reserved", 1)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit)
         }
     }
 
