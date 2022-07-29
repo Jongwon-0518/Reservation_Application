@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_reservations.view.*
+import kotlinx.android.synthetic.main.reservation_room_list.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
 
 
@@ -35,6 +36,19 @@ class Reservations : Fragment() {
         room_Data("8번방", "8입니당", 8)
     )
 
+    val now_My_Reservations_time = arrayListOf(
+        reservation_Data(1, "파마", 200, 20220202, 1300),
+        reservation_Data(1, "pt", 100, 20220202, 1500),
+        reservation_Data(1, "커트", 100, 20220202, 900),
+        reservation_Data(1, "메이플ㅋ", 100, 20220202, 1300)
+    )
+    val previous_My_Reservations_time = arrayListOf(
+        reservation_Data(1, "파마", 200, 20220202, 1300),
+        reservation_Data(1, "pt", 100, 20220202, 1500),
+        reservation_Data(1, "커트", 100, 20220202, 900),
+        reservation_Data(1, "메이플ㅋ", 100, 20220202, 1300)
+    )
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_reservations, container, false)
         my_Reservations = rootView.reservations_recyclerview
@@ -53,13 +67,11 @@ class Reservations : Fragment() {
 
     // Reservations RecyclerViewHolder
     inner class RecyclerViewHolder_Reservations(v: View) : RecyclerView.ViewHolder(v) {
-        val title: TextView = v.room_tittle
-        val information : TextView = v.room_info
-        val code : TextView = v.room_code
+        val title: TextView = v.reservation_room_title
+        val code : TextView = v.reservation_room_code
 
         fun bind(item: room_Data) {
             title.text = item.title
-            information.text = item.information
             code.text = item.code.toString()
 
             itemView.setOnClickListener {
@@ -78,7 +90,7 @@ class Reservations : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder_Reservations {
             // TODO : inflate할 layout변경
-            val cellForRow = LayoutInflater.from(parent.context).inflate(R.layout.room_list, parent, false)
+            val cellForRow = LayoutInflater.from(parent.context).inflate(R.layout.reservation_room_list, parent, false)
             return RecyclerViewHolder_Reservations(cellForRow)
         }
 

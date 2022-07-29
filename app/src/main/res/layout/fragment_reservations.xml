@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/reservations_textView"
         android:text="예약 현황"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,12 +30,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reservations_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reservations_textView"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         />
 
     <View
@@ -48,7 +49,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:text="예약내역"
+        android:text="이전 예약 내역"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,12 +70,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reservations_recyclerView2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         />
 
     <View
