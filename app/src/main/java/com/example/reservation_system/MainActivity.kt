@@ -1,18 +1,9 @@
 package com.example.reservation_system
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,23 +11,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // 1) ViewPager2 참조
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager2)
+        print("onCreate 호출됨")
         // defaultvalue main화면 2번
-        val screen_location = intent.getIntExtra("location", 2)
+        var screen_location = intent.getIntExtra("location", 2)
+        screen_location = intent.getIntExtra("reserved", screen_location)
 
-        viewPager.post {
+        view_pager2.post {
             // 키자마자 메인화면 2번
-            viewPager.setCurrentItem(screen_location, true)
+            view_pager2.setCurrentItem(screen_location, true)
         }
 
         // 2) FragmentStateAdapter 생성 : Fragment 여러개를 ViewPager2에 연결해주는 역할
         val viewpagerFragmentAdapter = ViewpagerFragmentAdapter(this)
 
         // 3) ViewPager2의 adapter에 설정, BottomNavigationView와 연결
-        viewPager.adapter = viewpagerFragmentAdapter
-        viewPager.registerOnPageChangeCallback( PageChangeCallback() )
+        view_pager2.adapter = viewpagerFragmentAdapter
+        view_pager2.registerOnPageChangeCallback( PageChangeCallback() )
         bottomNavigationView.setOnNavigationItemSelectedListener { navigationSelected(it) }
 
     }
