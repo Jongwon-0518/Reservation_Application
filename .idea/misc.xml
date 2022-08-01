@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Reservation_Application/app/src/main/res/drawable/baseline_schedule_24.xml" value="0.3425" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/activity_main.xml" value="0.20729166666666668" />
+        <entry key="..\:/Reservation_Application/app/src/main/res/layout/activity_splash.xml" value="0.37817028985507245" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_createmanage.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_home.xml" value="0.27708333333333335" />
         <entry key="..\:/Reservation_Application/app/src/main/res/layout/fragment_mypage.xml" value="0.27708333333333335" />
