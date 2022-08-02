@@ -30,7 +30,8 @@ class MyReservationImfo(context: Context) : BottomSheetDialog(context) {
                 .setPositiveButton("확인"){
                     dialogInterface: DialogInterface, i:Int ->
                     // TODO : Cancel Reservation in Firebase
-                    Toast.makeText(this.context, "확인", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, "취소 완료!", Toast.LENGTH_SHORT).show()
+                    dismiss()
 //                    val intent = Intent(this.context, MainActivity::class.java)
 //                    startActivity(intent)
                 }
