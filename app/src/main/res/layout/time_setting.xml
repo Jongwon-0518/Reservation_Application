@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="요일별로 시간대를 설정하세요!"
+            android:textAlignment="center" />
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/group_weekdays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:tbgChildSpacing="auto">
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="월"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="화"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="수"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="목"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="금"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="토"/>
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/Sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="일"/>
+
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+        <CheckBox
+            android:id="@+id/holiday_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="공휴일 쉬는 날 적용" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/open_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="10dp"
+                    android:hint="오픈 시간 ( Ex: 10시 10분 -> 1010 )"
+                    android:maxLength="10"
+                    android:selectAllOnFocus="true"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/finish_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="10dp"
+                    android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                    android:maxLength="10"
+                    android:selectAllOnFocus="true"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="예약할 시간 버튼의 간격을 설정해주세요!"
+                    android:textAlignment="center" />
+
+                <RadioGroup
+                    android:id="@+id/time_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/quarter_minute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15분 간격" />
+
+                    <RadioButton
+                        android:id="@+id/half_minute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30분 간격" />
+
+                    <RadioButton
+                        android:id="@+id/full_minute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="60분 간격" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/reservation_button_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Save"
+                    android:layout_gravity="center" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="예약화면 미리보기"
+                    android:textAlignment="center"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

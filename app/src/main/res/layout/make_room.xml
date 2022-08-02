@@ -68,7 +68,7 @@
             android:id="@+id/Make_room_complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Make"
+            android:text="Next"
             android:textStyle="bold"
             android:layout_gravity="center"
             />
