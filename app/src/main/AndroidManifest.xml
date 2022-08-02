@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Reservation_system">
         <activity
+            android:name=".MyReservationInformation"
+            android:exported="false" />
+        <activity
             android:name=".ReservationMenu"
             android:exported="false" />
 

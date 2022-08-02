@@ -76,10 +76,8 @@ class Reservations : Fragment() {
 
             itemView.setOnClickListener {
                 activity?.let {
-                    val intent = Intent(context, RoomInformation::class.java)
-                    intent.putExtra("code", item.code)
-                    startActivity(intent)
-                    activity!!.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+                    val myReservationDialog = MyReservationImfo(requireContext())
+                    myReservationDialog.show()
                 }
             }
         }
@@ -89,7 +87,6 @@ class Reservations : Fragment() {
     inner class RecyclerView_Reservations(val my_reservations_info : ArrayList<room_Data>) : RecyclerView.Adapter<RecyclerViewHolder_Reservations>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder_Reservations {
-            // TODO : inflate할 layout변경
             val cellForRow = LayoutInflater.from(parent.context).inflate(R.layout.reservation_room_list, parent, false)
             return RecyclerViewHolder_Reservations(cellForRow)
         }

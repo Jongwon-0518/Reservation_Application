@@ -14,15 +14,15 @@ import kotlinx.android.synthetic.main.fragment_createmanage.view.*
 class CreateManage : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_createmanage, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
 
-        view.make_room_button.setOnClickListener{
+        rootView.make_room_button.setOnClickListener{
             activity?.let {
                 val intent = Intent(context, Makeroom::class.java)
                 startActivity(intent)
                 requireActivity().overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             }
         }
-        return view
+        return rootView
     }
 }
