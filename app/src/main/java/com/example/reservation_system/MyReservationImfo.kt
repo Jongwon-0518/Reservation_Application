@@ -32,8 +32,6 @@ class MyReservationImfo(context: Context) : BottomSheetDialog(context) {
                     // TODO : Cancel Reservation in Firebase
                     Toast.makeText(this.context, "취소 완료!", Toast.LENGTH_SHORT).show()
                     dismiss()
-//                    val intent = Intent(this.context, MainActivity::class.java)
-//                    startActivity(intent)
                 }
                 .setNegativeButton("취소", null)
             // Show Dialog
