@@ -29,10 +29,9 @@ class Login : AppCompatActivity() {
         }
 
         // 불러오기
-        var pref = this.getPreferences(0)
+        val pref = this.getPreferences(0)
         editText_userid.setText(pref.getString("ID", ""))
         editText_userpassword.setText(pref.getString("PW", ""))
-        checkbox_saveID.isChecked = pref.getBoolean("Cb_Save", false)
 
         val logged_out = intent.getBooleanExtra("From_Logout", false)
         // 로그아웃이 진행된 경우 자동로그인 해제
@@ -55,13 +54,10 @@ class Login : AppCompatActivity() {
 
             // checkbox 저장
             this.getPreferences(0).edit().putBoolean("Cb_Autologin", checkbox_autoLogin.isChecked).apply()
-            this.getPreferences(0).edit().putBoolean("Cb_Save", checkbox_saveID.isChecked).apply()
 
             // 저장
-            if (checkbox_saveID.isChecked){
-                this.getPreferences(0).edit().putString("ID", editText_userid.text.toString()).apply()
-                this.getPreferences(0).edit().putString("PW", editText_userpassword.text.toString()).apply()
-            }
+            this.getPreferences(0).edit().putString("ID", editText_userid.text.toString()).apply()
+            this.getPreferences(0).edit().putString("PW", editText_userpassword.text.toString()).apply()
 
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("ID", "아이디")
