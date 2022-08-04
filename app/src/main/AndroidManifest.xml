@@ -13,9 +13,6 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".MyReservationInformation"
-            android:exported="false" />
-        <activity
             android:name=".ReservationMenu"
             android:exported="false" />
 

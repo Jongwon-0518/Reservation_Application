@@ -23,12 +23,21 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:hint="Password"
+        android:inputType="textPassword"
         />
 
     <CheckBox
+        android:id="@+id/checkbox_autoLogin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="자동 로그인"
+        />
+
+    <CheckBox
+        android:id="@+id/checkbox_saveID"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="아이디 저장"
         android:layout_marginBottom="15dp"
         />
 
@@ -38,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="로그인"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         />
 
 
