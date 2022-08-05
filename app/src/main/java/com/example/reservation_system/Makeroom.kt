@@ -2,6 +2,7 @@ package com.example.reservation_system
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -19,6 +20,22 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.make_room)
 
+        Private_checkbox.setOnCheckedChangeListener{ _, isChecked ->
+            if(isChecked){
+                Private_password.visibility = View.VISIBLE
+            }else{
+                Private_password.visibility = View.GONE
+            }
+        }
+
+        Location_checkbox.setOnCheckedChangeListener{ _, isChecked ->
+            if(isChecked){
+                mapview.visibility = View.VISIBLE
+            }else{
+                mapview.visibility = View.GONE
+            }
+        }
+
         val mapFragment: SupportMapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
@@ -26,6 +43,7 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
             this.finish()
         }
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap

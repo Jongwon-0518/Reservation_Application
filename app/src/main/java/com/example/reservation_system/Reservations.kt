@@ -83,6 +83,8 @@ class Reservations : Fragment() {
         }
     }
 
+
+
     // Reservations RecyclerView
     inner class RecyclerView_Reservations(val my_reservations_info : ArrayList<room_Data>) : RecyclerView.Adapter<RecyclerViewHolder_Reservations>() {
 

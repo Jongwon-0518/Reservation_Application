@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/room_title_make"
             android:layout_width="match_parent"
             android:layout_height= "48dp"
             android:layout_margin="10dp"
@@ -20,6 +21,16 @@
             android:maxLength="10" />
 
         <EditText
+            android:id="@+id/Category_make"
+            android:layout_width="match_parent"
+            android:layout_height= "48dp"
+            android:layout_margin="10dp"
+            android:hint="분류"
+            android:textSize="20sp"
+            android:selectAllOnFocus="true" />
+
+        <EditText
+            android:id="@+id/room_info_make"
             android:layout_width="match_parent"
             android:layout_height= "wrap_content"
             android:maxLines="10"
@@ -30,6 +41,7 @@
             android:maxLength="100" />
 
         <CheckBox
+            android:id="@+id/Private_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_margin="10dp"
@@ -37,15 +49,18 @@
             android:text="Private" />
 
         <EditText
+            android:id="@+id/Private_password"
             android:layout_width="match_parent"
             android:layout_height= "48dp"
             android:layout_margin="10dp"
             android:hint="Password for private"
             android:textSize="15sp"
             android:selectAllOnFocus="true"
-            android:maxLength="8" />
+            android:maxLength="8"
+            android:visibility="gone" />
 
         <CheckBox
+            android:id="@+id/Location_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_margin="10dp"
@@ -60,7 +75,8 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            tools:layout="@layout/abc_search_view" />
+            tools:layout="@layout/abc_search_view"
+            android:visibility="gone" />
 
 
 
@@ -68,11 +84,10 @@
             android:id="@+id/Make_room_complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:text="make"
             android:textStyle="bold"
             android:layout_gravity="center"
             />
-
 
     </LinearLayout>
 </ScrollView>
