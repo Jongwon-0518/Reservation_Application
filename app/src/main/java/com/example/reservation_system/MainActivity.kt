@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        print("onCreate 호출됨")
         // defaultvalue main화면 2번
         var screen_location = intent.getIntExtra("location", 2)
         screen_location = intent.getIntExtra("reserved", screen_location)

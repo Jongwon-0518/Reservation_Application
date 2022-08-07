@@ -5,19 +5,38 @@ import android.content.Intent
 import android.hardware.input.InputManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
+
 class Login : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
+    // TODO : 로그아웃 진행 시 저장된 정보 삭제
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Firebase
+        auth = Firebase.auth
+
+        // Button Listener
         button_login.setOnClickListener {
             Log_in(it)
+        }
+
+        button_register.setOnClickListener{
+            startActivity(Intent(this, SignUp::class.java))
+            overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)
         }
 
         editText_userpassword.setOnEditorActionListener{ v, actionId, event ->

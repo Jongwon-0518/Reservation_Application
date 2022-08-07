@@ -67,6 +67,8 @@ class MakeReservation : AppCompatActivity() {
         button_reservation_last.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("reserved", 1)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit)
         }
