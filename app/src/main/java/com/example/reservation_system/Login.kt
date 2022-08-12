@@ -82,8 +82,6 @@ class Login : AppCompatActivity() {
                     this.getPreferences(0).edit().putString("ID", editText_userid.text.toString()).apply()
                     this.getPreferences(0).edit().putString("PW", editText_userpassword.text.toString()).apply()
 
-                    // TODO : Testing
-//                    val intent = Intent(this, testrealtimedatabase::class.java)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
