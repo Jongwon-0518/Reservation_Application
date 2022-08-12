@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_my_reservation_information.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
 
@@ -22,7 +24,7 @@ class Mypage : Fragment() {
 
         // 로그아웃
         rootView.button_logout.setOnClickListener{
-            auth.signOut()
+            Firebase.auth.signOut()
             backToLogin()
         }
 
@@ -35,7 +37,7 @@ class Mypage : Fragment() {
                 .setPositiveButton("확인"){
                     dialogInterface: DialogInterface, i:Int ->
 
-                    val user = auth.currentUser!!
+                    val user = Firebase.auth.currentUser!!
 
                     user.delete()
                         .addOnCompleteListener { task ->
@@ -48,6 +50,8 @@ class Mypage : Fragment() {
                 }
                 .setNegativeButton("취소", null)
             builder.show()
+
+            Toast.makeText(this.context, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
         }
         return rootView
     }
