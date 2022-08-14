@@ -72,7 +72,7 @@ class SignUp : AppCompatActivity() {
         button_getnumber.setOnClickListener{
             val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             var userPhone = tm.line1Number
-            userPhone = userPhone.replace("+82", "0")
+            // userPhone = userPhone.replace("+82", "0")
             // TODO : 나중에 지우기
             userPhone = userPhone.replace("+1555521555", "")
 
