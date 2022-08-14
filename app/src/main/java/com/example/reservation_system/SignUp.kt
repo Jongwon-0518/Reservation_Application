@@ -59,6 +59,7 @@ class SignUp : AppCompatActivity() {
             signUp(it)
         }
 
+        // 버튼 클릭 시 자동으로 가입신청
         edittext_signup_nickname.setOnEditorActionListener{ v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 signUp(v)
@@ -76,7 +77,7 @@ class SignUp : AppCompatActivity() {
             userPhone = userPhone.replace("+1555521555", "")
 
             Log.d(TAG, "전화번호 : [ getLine1Number ] >>> "+userPhone)
-            textview_signup_number.setText(userPhone)
+            textview_signup_number.text = userPhone
         }
     }
 

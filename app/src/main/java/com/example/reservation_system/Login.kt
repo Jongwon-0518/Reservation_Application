@@ -76,7 +76,9 @@ class Login : AppCompatActivity() {
                     task ->
                 if(task.isSuccessful) {
                     // checkbox 저장
-                    Toast.makeText(this, email + "님 환영합니다!", Toast.LENGTH_SHORT).show()
+                    val auth = Firebase.auth
+                    val user = auth.currentUser!!
+                    Toast.makeText(this, user.displayName + "님 환영합니다!", Toast.LENGTH_SHORT).show()
                     this.getPreferences(0).edit().putBoolean("Cb_Autologin", checkbox_autoLogin.isChecked).apply()
 
                     // 저장

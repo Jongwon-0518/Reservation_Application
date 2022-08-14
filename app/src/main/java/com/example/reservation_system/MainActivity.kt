@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             val uid = user.uid
             name
         }
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
     // BottomNav Menu
