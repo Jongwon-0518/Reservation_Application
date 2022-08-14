@@ -25,11 +25,16 @@ class Mypage : Fragment() {
 
         val user = Firebase.auth.currentUser!!
 
-//        rootView.MyPage_title.setText(user.name)
         // 로그아웃
         rootView.button_logout.setOnClickListener{
             Firebase.auth.signOut()
             backToLogin()
+        }
+        val name = getUserInfo()
+        rootView.MyPage_title.setText(name + "님 환영합니다.")
+
+        rootView.button_change_nickname.setOnClickListener{
+            // TODO : 닉네임 변경 버튼
         }
 
         // 회원탈퇴
@@ -72,7 +77,6 @@ class Mypage : Fragment() {
 //                toast("Neutral")
 //            }
             builder.show()
-
         }
         return rootView
     }
