@@ -11,25 +11,3 @@ class room_Data(room_title : String, room_info : String, room_code : Int, room_c
     var code = room_code
     var room_category = room_category
 }
-
-
-class User {
-    var name: String? = null
-    var email: String? = null
-    var age: String? = null
-
-    constructor() {}
-    constructor(name: String?, email: String?, age: String?) {
-        this.name = name
-        this.email = email
-        this.age = age
-    }
-
-    override fun toString(): String {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                '}'
-    }
-}
