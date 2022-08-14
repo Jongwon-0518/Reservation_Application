@@ -64,8 +64,9 @@ class Login : AppCompatActivity() {
     }
 
     fun Log_in(v : View?) {
-        val email = editText_userid.text.toString()
+        val id_number = editText_userid.text.toString()
         val pw = editText_userpassword.text.toString()
+        val email = id_number + "@abc.com"
 
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v?.windowToken, 0)

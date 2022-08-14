@@ -9,13 +9,33 @@
     android:paddingHorizontal="30dp"
     android:paddingTop="70dp">
 
-    <EditText
-        android:id="@+id/edittext_signup_id"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="아이디"
+        android:weightSum="5"
         android:layout_marginBottom="30dp"
-        />
+        >
+
+        <TextView
+            android:id="@+id/textview_signup_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="전화번호"
+            android:layout_weight="3.5"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/button_getnumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="가져오기"
+            android:textSize="15sp"
+            android:layout_weight="1.5"
+            />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/edittext_signup_pw"
@@ -31,8 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호 확인"
-        android:layout_marginBottom="30dp"
         android:inputType="textPassword"
+        android:layout_marginBottom="30dp"
         />
 
     <EditText
@@ -40,38 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="닉네임"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPassword"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="5"
         android:layout_marginBottom="50dp"
-        >
-
-        <TextView
-            android:id="@+id/textview_signup_number"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="전화번호"
-            android:layout_weight="3.5"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            />
-
-        <Button
-            android:id="@+id/test"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="가져오기"
-            android:textSize="15sp"
-            android:layout_weight="1.5"
-            />
-
-    </LinearLayout>
-
+        android:inputType="text"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

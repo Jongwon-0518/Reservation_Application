@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
@@ -22,6 +23,9 @@ class Mypage : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_mypage, container, false)
 
+        val user = Firebase.auth.currentUser!!
+
+//        rootView.MyPage_title.setText(user.name)
         // 로그아웃
         rootView.button_logout.setOnClickListener{
             Firebase.auth.signOut()
@@ -36,9 +40,6 @@ class Mypage : Fragment() {
                 .setMessage("탈퇴하시겠습니까??")
                 .setPositiveButton("확인"){
                     dialogInterface: DialogInterface, i:Int ->
-
-                    val user = Firebase.auth.currentUser!!
-
                     user.delete()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -52,6 +53,26 @@ class Mypage : Fragment() {
             builder.show()
 
             Toast.makeText(this.context, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        rootView.button_change_nickname.setOnClickListener{
+            val builder = AlertDialog.Builder(this.context)
+            builder.setTitle("닉네임을 입력해주세요.")
+            builder.setMessage("Message")
+            var editNickname = EditText(this.context)
+            builder.setView(editNickname)
+
+            builder.setPositiveButton("Positive") { dialogInterface: DialogInterface, i: Int ->
+//                toast("Positive")
+            }
+            builder.setNegativeButton("Negative") { dialogInterface: DialogInterface, i: Int ->
+//                toast("Negative")
+            }
+//            builder.setNeutralButton("Neutral") { dialogInterface: DialogInterface, i: Int ->
+//                toast("Neutral")
+//            }
+            builder.show()
+
         }
         return rootView
     }

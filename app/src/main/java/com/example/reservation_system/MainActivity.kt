@@ -3,6 +3,7 @@ package com.example.reservation_system
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -32,10 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         // 사용자 프로필 가져오기
         val user = Firebase.auth.currentUser
-        user?.let {
+        val name = user?.let {
             // Name, email address, and profile photo Url
             val name = user.displayName
-            val email = user.email
+            val phonenumber = user.email
             val photoUrl = user.photoUrl
 
             // Check if user's email is verified
@@ -45,7 +46,9 @@ class MainActivity : AppCompatActivity() {
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getToken() instead.
             val uid = user.uid
+            name
         }
+        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
     // BottomNav Menu

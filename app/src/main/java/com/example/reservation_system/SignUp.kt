@@ -6,11 +6,14 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +21,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
@@ -51,24 +56,25 @@ class SignUp : AppCompatActivity() {
         }
 
         button_signup_signup.setOnClickListener{
-            signUp()
+            signUp(it)
         }
 
-        edittext_signup_pwconfirm.setOnEditorActionListener{ v, actionId, event ->
+        edittext_signup_nickname.setOnEditorActionListener{ v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
-                signUp()
+                signUp(v)
                 true
             }
             else false
         }
 
         // 전화번호 가져오기
-        test.setOnClickListener{
-
+        button_getnumber.setOnClickListener{
             val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-
             var userPhone = tm.line1Number
             userPhone = userPhone.replace("+82", "0")
+            // TODO : 나중에 지우기
+            userPhone = userPhone.replace("+1555521555", "")
+
             Log.d(TAG, "전화번호 : [ getLine1Number ] >>> "+userPhone)
             textview_signup_number.setText(userPhone)
         }
@@ -81,44 +87,69 @@ class SignUp : AppCompatActivity() {
 
     // 회원 가입
     // TODO : 사용자 프로필 추가, https://firebase.google.com/docs/auth/android/manage-users?hl=ko, 이메일 인증도 가능
-    private fun signUp(){
-        val id = edittext_signup_id.text.toString()
+    private fun signUp(v : View?){
         val pw = edittext_signup_pw.text.toString()
         val pwconfirm = edittext_signup_pwconfirm.text.toString()
-        Log.d(TAG, id)
+        val nickname = edittext_signup_nickname.text.toString()
+        val phonenumber = textview_signup_number.text.toString()
+        val id = phonenumber + "@abc.com"
+
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(v?.windowToken, 0)
+
         Log.d(TAG, pw)
         Log.d(TAG, pwconfirm)
+        Log.d(TAG, nickname)
+        Log.d(TAG, phonenumber)
+        Log.d(TAG, id)
 
         if (pw != pwconfirm){
             makeToast_short("비밀번호와 확인이 다릅니다.")
             return
+        } else if (nickname.length == 0) {
+            makeToast_short("닉네임을 설정해주세요.")
+            return
+        } else if (phonenumber.length == 0) {
+            // TODO : 이미 사용된 전화번호에 대한 처리
+            makeToast_short("전화번호를 가져와 주세요.")
+            return
         }
 
-        if (id.length > 0 && pw.length > 0){
+        if (pw.length > 0){
             auth.createUserWithEmailAndPassword(id, pw)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
+
+                        val user = Firebase.auth.currentUser
+
+                        val profileUpdates = userProfileChangeRequest {
+                            displayName = nickname
+//                            photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
+                        }
+
+                        user!!.updateProfile(profileUpdates)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d(TAG, "User profile updated.")
+                                }
+                            }
+
                         Log.d(TAG, "createUserWithEmail:success")
                         makeToast_short("회원가입에 성공하였습니다.")
-                        val user = auth.currentUser
                         val intent = Intent(this, Login::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit)
                     } else {
-                        // If sign in fails, display a message to the user.ㅂ
+                        // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         makeToast_short("이미 있는 아이디거나 확인 사항을 다시 확인해주세요.")
                     }
                 }
         } else {
-            if (id.length == 0) {
-                makeToast_short("아이디를 입력해주세요.")
-            } else {
-                makeToast_short("비밀번호를 입력해주세요.")
-            }
+            makeToast_short("비밀번호를 입력해주세요.")
         }
     }
 
