@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_createmanage.*
 import kotlinx.android.synthetic.main.fragment_createmanage.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.room_list.view.*
 class CreateManage : Fragment() {
 
     lateinit var make_room_recylerView : RecyclerView
+    private lateinit var database: DatabaseReference
 
     val DataList = arrayListOf(
         room_Data("1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1, "health"),
@@ -28,6 +32,9 @@ class CreateManage : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
+
+        database = Firebase.database.reference
+
 
         make_room_recylerView = rootView.recyclerView_createmanage
         // 구분선

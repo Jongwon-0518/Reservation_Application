@@ -76,7 +76,7 @@ class Login : AppCompatActivity() {
                     task ->
                 if(task.isSuccessful) {
                     // checkbox 저장
-                    val nick = getUserInfo()
+                    val nick = getUserName()
                     Toast.makeText(this, nick + "님 환영합니다!", Toast.LENGTH_SHORT).show()
                     this.getPreferences(0).edit().putBoolean("Cb_Autologin", checkbox_autoLogin.isChecked).apply()
 

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { navigationSelected(it) }
 
         // 사용자 프로필 가져오기
-        val name = getUserInfo()
+        val name = getUserName()
 //        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 // 회원 정보 가져오기
-fun getUserInfo(): String?{
+fun getUserName(): String?{
     val user = Firebase.auth.currentUser
     val name = user?.let {
         // Name, email address, and profile photo Url
@@ -99,4 +99,24 @@ fun getUserInfo(): String?{
         name
     }
     return name
+}
+
+fun getUseremail(): String?{
+    val user = Firebase.auth.currentUser
+    val phonenumber = user?.let {
+        // Name, email address, and profile photo Url
+        val name = user.displayName
+        val phonenumber = user.email
+        val photoUrl = user.photoUrl
+
+        // Check if user's email is verified
+        val emailVerified = user.isEmailVerified
+
+        // The user's ID, unique to the Firebase project. Do NOT use this value to
+        // authenticate with your backend server, if you have one. Use
+        // FirebaseUser.getToken() instead.
+        val uid = user.uid
+        phonenumber
+    }
+    return phonenumber
 }

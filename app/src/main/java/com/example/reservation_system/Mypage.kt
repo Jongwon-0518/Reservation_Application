@@ -13,6 +13,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_my_reservation_information.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
@@ -20,18 +22,26 @@ import kotlinx.android.synthetic.main.fragment_mypage.view.*
 
 class Mypage : Fragment() {
 
+
+    private lateinit var database: DatabaseReference
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_mypage, container, false)
 
         val user = Firebase.auth.currentUser!!
+
+        database = Firebase.database.reference
 
         // 로그아웃
         rootView.button_logout.setOnClickListener{
             Firebase.auth.signOut()
             backToLogin()
         }
-        val name = getUserInfo()
-        rootView.MyPage_title.setText(name + "님 환영합니다.")
+        val name = getUserName()
+        val email = getUseremail()
+        val phonenumber : String = email!!.replace("@abc.com", "")
+
+        rootView.MyPage_title.text = name + "님 환영합니다."
 
         rootView.button_change_nickname.setOnClickListener{
             // TODO : 닉네임 변경 버튼
@@ -49,6 +59,8 @@ class Mypage : Fragment() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Log.d(TAG, "User account deleted.")
+                                database.child("User").child(phonenumber).removeValue()
+
                             }
                         }
 

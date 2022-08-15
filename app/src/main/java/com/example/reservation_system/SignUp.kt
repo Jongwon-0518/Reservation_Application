@@ -19,9 +19,13 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -39,6 +43,8 @@ class SignUp : AppCompatActivity() {
 
     // TODO : 아이디 만들고나면 저장된거 지우기
     lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("HardwareIds", "MissingPermission")
@@ -47,6 +53,9 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         checkPermissions()
+
+        // realtime database
+        database = Firebase.database.reference
 
         // Firebase
         auth = Firebase.auth
@@ -136,6 +145,11 @@ class SignUp : AppCompatActivity() {
                                 }
                             }
 
+                        val result = HashMap<Any, Any>()
+                        result["phonenumber"] = phonenumber //키, 값
+                        writeUser(phonenumber, "", "")
+
+
                         Log.d(TAG, "createUserWithEmail:success")
                         makeToast_short("회원가입에 성공하였습니다.")
                         val intent = Intent(this, Login::class.java)
@@ -143,6 +157,7 @@ class SignUp : AppCompatActivity() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit)
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -152,6 +167,18 @@ class SignUp : AppCompatActivity() {
         } else {
             makeToast_short("비밀번호를 입력해주세요.")
         }
+    }
+
+    private fun writeUser(phonenumber : String, makeroom_code : String, reservation_code : String) {
+        val user = user_Data(phonenumber, makeroom_code, reservation_code)
+
+        //데이터 저장
+        database.child("User").child(phonenumber).setValue(user)
+            .addOnSuccessListener(OnSuccessListener<Void?> {
+            //데이터베이스에 넘어간 이후 처리
+            })
+            .addOnFailureListener(OnFailureListener {
+            })
     }
 
     fun makeToast_short(s : String){

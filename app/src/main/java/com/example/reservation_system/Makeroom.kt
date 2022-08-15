@@ -33,9 +33,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
 
         database = Firebase.database.reference
 
-        val roomIdmax : Long
-
-
         Private_checkbox.setOnCheckedChangeListener{ _, isChecked ->
             if(isChecked){
                 Private_password.visibility = View.VISIBLE
@@ -65,7 +62,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
             result["room_category"] = getRoomCategory
             result["information"] = getRoomInformation
 
-
             database.child("Room").addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val roomIdmax = dataSnapshot.childrenCount
@@ -78,17 +74,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
 
             this.finish()
         }
-    }
-
-    private fun roomCount() {
-        database.child("Room").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val roomIdmax = dataSnapshot.childrenCount
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
     }
 
     private fun writeRoom(roomId: String, title: String, room_category: String, information: String) {
