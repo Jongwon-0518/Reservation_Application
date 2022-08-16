@@ -79,6 +79,7 @@ class Mypage : Fragment() {
             var editNickname = EditText(this.context)
             builder.setView(editNickname)
 
+            // TODO : 닉네임 바꾸기 AlertDialog
             builder.setPositiveButton("Positive") { dialogInterface: DialogInterface, i: Int ->
 //                toast("Positive")
             }

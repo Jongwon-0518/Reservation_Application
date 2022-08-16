@@ -101,7 +101,7 @@ fun getUserName(): String?{
     return name
 }
 
-fun getUseremail(): String?{
+fun getUseremail(): String {
     val user = Firebase.auth.currentUser
     val phonenumber = user?.let {
         // Name, email address, and profile photo Url
@@ -118,5 +118,5 @@ fun getUseremail(): String?{
         val uid = user.uid
         phonenumber
     }
-    return phonenumber
+    return phonenumber.toString()
 }

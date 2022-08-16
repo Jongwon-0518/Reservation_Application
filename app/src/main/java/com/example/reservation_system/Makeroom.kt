@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.make_room.*
+import java.util.PriorityQueue
 
 
 class Makeroom : AppCompatActivity(), OnMapReadyCallback {
@@ -56,43 +57,82 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
             val getRoomTitle: String = room_title_make.text.toString()
             val getRoomCategory: String = Category_make.text.toString()
             val getRoomInformation: String = room_info_make.text.toString()
+            val getMaker: String = getUseremail()
 
-            val result = HashMap<Any, Any>()
-            result["title"] = getRoomTitle //키, 값
-            result["room_category"] = getRoomCategory
-            result["information"] = getRoomInformation
+            // TODO : 너무김
+            // Read Database
+            database.child("Room").child("number").get().addOnSuccessListener {
+                if (it.value != null) {
+                    val n = (it.value as HashMap<*, *>)["number"].toString()
+                    writeRoom(getMaker, n, getRoomTitle, getRoomCategory, getRoomInformation)
+                    val newroomId = room_Next_Number(n.toInt() + 1)
+                    database.child("Room").child("number").setValue(newroomId)
+                        .addOnSuccessListener(OnSuccessListener<Void?>
+                        //데이터베이스에 넘어간 이후 처리
+                        { })
+                        .addOnFailureListener(OnFailureListener {
+                            Toast.makeText(
+                                applicationContext,
+                                "저장에 실패했습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        })
 
-            database.child("Room").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val roomIdmax = dataSnapshot.childrenCount
-                    val newroomId = roomIdmax + 1
-                    writeRoom(newroomId.toString(), getRoomTitle, getRoomCategory, getRoomInformation)
+                } else {
+                    writeRoom(getMaker, "1", getRoomTitle, getRoomCategory, getRoomInformation)
+
+                    val newroomId = room_Next_Number(2)
+                    database.child("Room").child("number").setValue(newroomId)
+                        .addOnSuccessListener(OnSuccessListener<Void?>
+                        //데이터베이스에 넘어간 이후 처리
+                        { })
+                        .addOnFailureListener(OnFailureListener {
+                            Toast.makeText(
+                                applicationContext,
+                                "저장에 실패했습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        })
                 }
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
+            }.addOnFailureListener{
+                Log.e("firebase", "Error getting data", it)
+            }
+
+
+
+
+//             TODO : 업데이트
+//            val useremail = getUseremail()
+//            database.child("User").addListenerForSingleValueEvent(object : ValueEventListener {
+//                override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                    val roomIdmax = dataSnapshot.childrenCount
+//                    val newroomId = roomIdmax + 1
+//                    writeRoom(getMaker, newroomId.toString(), getRoomTitle, getRoomCategory, getRoomInformation)
+//                }
+//                override fun onCancelled(error: DatabaseError) {
+//                }
+//            })
 
             this.finish()
         }
     }
 
-    private fun writeRoom(roomId: String, title: String, room_category: String, information: String) {
-        val room = room_Data(title, information, roomId.toInt(), room_category)
+    private fun writeRoom(room_maker: String, roomId: String, title: String, room_category: String, information: String) {
+        val room = room_Data(room_maker, title, information, roomId.toInt(), room_category)
 
         //데이터 저장
         database.child("Room").child(roomId).setValue(room)
             .addOnSuccessListener(OnSuccessListener<Void?>
             //데이터베이스에 넘어간 이후 처리
-            { Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_LONG).show() })
+            { Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_SHORT).show() })
             .addOnFailureListener(OnFailureListener {
                 Toast.makeText(
                     applicationContext,
                     "저장에 실패했습니다",
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
             })
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -104,5 +144,10 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+    }
+
+    // TODO : 간단하게, 밖이랑 연결
+    fun getFromDatabase(){
+
     }
 }

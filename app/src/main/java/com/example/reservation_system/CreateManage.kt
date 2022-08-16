@@ -2,6 +2,7 @@ package com.example.reservation_system
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.UserInfo
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -25,16 +27,26 @@ class CreateManage : Fragment() {
     private lateinit var database: DatabaseReference
 
     val DataList = arrayListOf(
-        room_Data("1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1, "health"),
-        room_Data("2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다.", 2, "health"),
-        room_Data("3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요.", 3, "health")
+        room_Data("010-XXXX-XXXX", "1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1, "health"),
+        room_Data("010-XXXX-XXXX", "2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다.", 2, "health"),
+        room_Data("010-XXXX-XXXX", "3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요.", 3, "health")
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
 
         database = Firebase.database.reference
+        // Read Database
+        // TODO : 이름마다 바꾸기
+        database.child("User").child("4").get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            val userInformation = it.value
+            val makeroom_codes = (userInformation as HashMap<*, *>)["makeroom_code"]
+            Log.i("firebase", "makeroom_codes $makeroom_codes")
 
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
 
         make_room_recylerView = rootView.recyclerView_createmanage
         // 구분선

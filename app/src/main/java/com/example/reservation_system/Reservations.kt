@@ -1,20 +1,15 @@
 package com.example.reservation_system
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_reservations.view.*
 import kotlinx.android.synthetic.main.reservation_room_list.view.*
-import kotlinx.android.synthetic.main.room_list.view.*
 
 
 class Reservations : Fragment() {
@@ -24,16 +19,16 @@ class Reservations : Fragment() {
 
     // TODO : 서버의 데이터베이스와 연결
     val now_My_Reservations = arrayListOf(
-        room_Data("1번방", "1번방 설명입니다.", 1, "health"),
-        room_Data("2번방", "2번방 입니다.", 2, "health"),
-        room_Data("3번방", "3번방 이에요.", 3, "health"),
-        room_Data("4번방", "4번방 입니다.", 4, "health"),
+        room_Data("010-XXXX-XXXX", "1번방", "1번방 설명입니다.", 1, "health"),
+        room_Data("010-XXXX-XXXX", "2번방", "2번방 입니다.", 2, "health"),
+        room_Data("010-XXXX-XXXX", "3번방", "3번방 이에요.", 3, "health"),
+        room_Data("010-XXXX-XXXX", "4번방", "4번방 입니다.", 4, "health"),
     )
     val previous_My_Reservations = arrayListOf(
-        room_Data("5번방", "5번방", 5, "health"),
-        room_Data("6번방", "6번방", 6, "health"),
-        room_Data("7번방", "7번방의 선물", 7, "health"),
-        room_Data("8번방", "8입니당", 8, "health")
+        room_Data("010-XXXX-XXXX", "5번방", "5번방", 5, "health"),
+        room_Data("010-XXXX-XXXX", "6번방", "6번방", 6, "health"),
+        room_Data("010-XXXX-XXXX", "7번방", "7번방의 선물", 7, "health"),
+        room_Data("010-XXXX-XXXX", "8번방", "8입니당", 8, "health")
     )
 
     val now_My_Reservations_time = arrayListOf(
