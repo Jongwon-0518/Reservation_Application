@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_createmanage.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
 
 
+//             TODO : 방삭제시, 방 메뉴 시간 등
 class CreateManage : Fragment() {
 
     lateinit var make_room_recylerView : RecyclerView

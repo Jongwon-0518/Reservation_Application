@@ -96,7 +96,6 @@ class SignUp : AppCompatActivity() {
     }
 
     // 회원 가입
-    // TODO : 사용자 프로필 추가, https://firebase.google.com/docs/auth/android/manage-users?hl=ko, 이메일 인증도 가능
     private fun signUp(v : View?){
         val pw = edittext_signup_pw.text.toString()
         val pwconfirm = edittext_signup_pwconfirm.text.toString()
@@ -120,7 +119,6 @@ class SignUp : AppCompatActivity() {
             makeToast_short("닉네임을 설정해주세요.")
             return
         } else if (phonenumber.length == 0) {
-            // TODO : 이미 사용된 전화번호에 대한 처리
             makeToast_short("전화번호를 가져와 주세요.")
             return
         }
@@ -147,7 +145,7 @@ class SignUp : AppCompatActivity() {
 
                         val result = HashMap<Any, Any>()
                         result["phonenumber"] = phonenumber //키, 값
-                        writeUser(phonenumber, "", "")
+                        writeUser(phonenumber, "")
 
 
                         Log.d(TAG, "createUserWithEmail:success")
@@ -169,8 +167,8 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    private fun writeUser(phonenumber : String, makeroom_code : String, reservation_code : String) {
-        val user = user_Data(phonenumber, makeroom_code, reservation_code)
+    private fun writeUser(phonenumber : String, reservation_code : String) {
+        val user = user_Data(phonenumber, reservation_code)
 
         //데이터 저장
         database.child("User").child(phonenumber).setValue(user)
@@ -191,16 +189,15 @@ class SignUp : AppCompatActivity() {
         //거절되었거나 아직 수락하지 않은 권한(퍼미션)을 저장할 문자열 배열 리스트
         var rejectedPermissionList = ArrayList<String>()
 
-        //필요한 퍼미션들을 하나씩 끄집어내서 현재 권한을 받았는지 체크
         for(permission in requiredPermissions){
             if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 //만약 권한이 없다면 rejectedPermissionList에 추가
                 rejectedPermissionList.add(permission)
             }
         }
-        //거절된 퍼미션이 있다면...
+
         if(rejectedPermissionList.isNotEmpty()){
-            //권한 요청!
+            //권한 요청
             makeToast_short("회원가입을 위해서 다음의 권한들이 필요합니다.")
             val array = arrayOfNulls<String>(rejectedPermissionList.size)
             ActivityCompat.requestPermissions(this, rejectedPermissionList.toArray(array), REQUEST_PERMISSIONS_CODE)

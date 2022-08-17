@@ -2,6 +2,7 @@ package com.example.reservation_system
 
 import com.google.firebase.database.IgnoreExtraProperties
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @IgnoreExtraProperties
@@ -14,6 +15,19 @@ class room_Data(room_maker: String, room_title: String, room_info: String, room_
     var room_category = room_category
 }
 
-class room_Next_Number(number : Int){
+class room_Number(number : Int){
     var number = number
 }
+
+class room_reservation_list(arr : ArrayList<Int>){
+    var room_numbers = arr
+}
+
+class user_Data(
+    var phonenumber: String,
+    var reservation_code: String
+)
+
+class makeroom_Codes(
+    var makeroom_codes: Int
+)

@@ -60,16 +60,14 @@ class Mypage : Fragment() {
                             if (task.isSuccessful) {
                                 Log.d(TAG, "User account deleted.")
                                 database.child("User").child(phonenumber).removeValue()
-
+                                // TODO : 예약 남아있다면 회원 탈퇴 철회
+                                Toast.makeText(this.context, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                                backToLogin()
                             }
                         }
-
-                    backToLogin()
                 }
                 .setNegativeButton("취소", null)
             builder.show()
-
-            Toast.makeText(this.context, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
         rootView.button_change_nickname.setOnClickListener{

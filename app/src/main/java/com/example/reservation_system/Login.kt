@@ -71,6 +71,14 @@ class Login : AppCompatActivity() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v?.windowToken, 0)
 
+        if (id_number.length == 0){
+            Toast.makeText(this, "전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        } else if (pw.length == 0){
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         auth?.signInWithEmailAndPassword(email, pw)
             ?.addOnCompleteListener {
                     task ->
