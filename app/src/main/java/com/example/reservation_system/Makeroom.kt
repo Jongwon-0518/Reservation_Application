@@ -54,7 +54,7 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
             val getRoomTitle: String = room_title_make.text.toString()
             val getRoomCategory: String = Category_make.text.toString()
             val getRoomInformation: String = room_info_make.text.toString()
-            val getMaker: String = getUseremail()
+            val getMaker: String = getUserPhoneNumber()
             var roomId: String
             // Read Database
             database.child("Room").child("number").get().addOnSuccessListener {
@@ -62,11 +62,7 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
                 writeRoom(getMaker, roomId, getRoomTitle, getRoomCategory, getRoomInformation)
                 writeRoomNumber(roomId.toInt() + 1)
 
-                var useremail = getUseremail()
-                val range = IntRange(0, useremail.indexOf("@") - 1)
-                useremail = useremail.slice(range)
-
-                database.child("User").child(useremail).child("makeroom_codes").child(roomId).setValue(true)
+                database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").child(roomId).setValue(roomId)
                     .addOnSuccessListener(OnSuccessListener<Void?>
                     //데이터베이스에 넘어간 이후 처리
                     { })

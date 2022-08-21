@@ -120,3 +120,9 @@ fun getUseremail(): String {
     }
     return phonenumber.toString()
 }
+
+fun getUserPhoneNumber(): String {
+    val useremail = getUseremail()
+    val range = IntRange(0, useremail.indexOf("@") - 1)
+    return useremail.slice(range)
+}
