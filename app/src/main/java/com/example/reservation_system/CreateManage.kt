@@ -59,12 +59,15 @@ class CreateManage : Fragment() {
         // Read Database
         database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").get().addOnSuccessListener { it ->
             val room_lists = it.value as ArrayList<*>
+            var cnt = 0
             room_lists.forEach { a ->
                 a?.run{
                     database.child("Room").child(a as String).get().addOnSuccessListener {
                         val map = it.value as HashMap<*, *>
                         DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String))
-                        adapter.notifyDataSetChanged()
+//                        adapter.notifyDataSetChanged()
+                        adapter.notifyItemInserted(cnt)
+                        cnt += 1
                     }.addOnFailureListener{
                         Log.e("firebase", "Error getting data", it)
                     }
