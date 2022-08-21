@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.room_list.view.*
 //             TODO : 방삭제시, 방 메뉴 시간 등
 class CreateManage : Fragment() {
 
-    lateinit var make_room_recylerView : RecyclerView
+    private lateinit var make_room_recylerView : RecyclerView
     private lateinit var database: DatabaseReference
 
     val DataList = arrayListOf(
@@ -37,13 +37,19 @@ class CreateManage : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
 
         database = Firebase.database.reference
+
         // Read Database
         // TODO : 이름마다 바꾸기
+
         database.child("User").child("4").get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
             val userInformation = it.value
-            val makeroom_codes = (userInformation as HashMap<*, *>)["makeroom_code"]
+            val makeroom_codes = (userInformation as HashMap<*, *>)["makeroom_codes"]
             Log.i("firebase", "makeroom_codes $makeroom_codes")
+            var room_list = arrayOf(makeroom_codes)
+
+
+
 
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
@@ -77,7 +83,7 @@ class CreateManage : Fragment() {
 
             itemView.setOnClickListener {
                 activity?.let {
-                    val intent = Intent(context, RoomInformation::class.java)
+                    val intent = Intent(context, EditRoom::class.java)
                     intent.putExtra("code", item.code)
                     startActivity(intent)
                     activity!!.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)

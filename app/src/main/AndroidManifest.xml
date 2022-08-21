@@ -64,6 +64,7 @@
         <activity android:name=".Makeroom" />
         <activity android:name=".RoomInformation" />
         <activity android:name=".MakeReservation" />
+        <activity android:name=".EditRoom" />
     </application>
 
 </manifest>
