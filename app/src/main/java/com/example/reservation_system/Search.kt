@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,9 +48,13 @@ class Search : Fragment() {
 
                     // Read Database
                     database.child("Room").child(code).get().addOnSuccessListener { it ->
-                        val map = it.value as HashMap<*, *>
-                        search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
-                        adapter.notifyDataSetChanged()
+                        if (it.value == null){
+                                Toast.makeText(context, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                        } else {
+                            val map = it.value as HashMap<*, *>
+                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
+                            adapter.notifyDataSetChanged()
+                        }
                     }.addOnFailureListener{
                         Log.e("firebase", "Error getting data", it)
                     }
@@ -65,6 +70,9 @@ class Search : Fragment() {
                                         val map = snap.value as HashMap<*, *>
                                         search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
                                     }
+                                }
+                                if (search_DataList.size == 0) {
+                                    Toast.makeText(context, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
                                 }
                                 adapter.notifyDataSetChanged()
                             }
