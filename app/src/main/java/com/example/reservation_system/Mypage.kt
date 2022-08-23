@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -42,10 +43,6 @@ class Mypage : Fragment() {
         val phonenumber : String = email!!.replace("@abc.com", "")
 
         rootView.MyPage_title.text = name + "님 환영합니다."
-
-        rootView.button_change_nickname.setOnClickListener{
-            // TODO : 닉네임 변경 버튼
-        }
 
         // 회원탈퇴
         rootView.button_signout.setOnClickListener{
@@ -78,15 +75,27 @@ class Mypage : Fragment() {
             builder.setView(editNickname)
 
             // TODO : 닉네임 바꾸기 AlertDialog
-            builder.setPositiveButton("Positive") { dialogInterface: DialogInterface, i: Int ->
-//                toast("Positive")
+            builder.setPositiveButton("바꾸기") { dialogInterface: DialogInterface, i: Int ->
+                val profileUpdates = userProfileChangeRequest {
+                    if (editNickname.length() == 0){
+                        Toast.makeText(requireContext(), "Positive", Toast.LENGTH_SHORT).show()
+
+                    }
+                    displayName = "Jane Q. User"
+//                    photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
+                }
+
+                user!!.updateProfile(profileUpdates)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d(TAG, "User profile updated.")
+                        }
+                    }
+                Toast.makeText(this.context, "Positive", Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton("Negative") { dialogInterface: DialogInterface, i: Int ->
-//                toast("Negative")
+            builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int ->
+                Toast.makeText(this.context, "Negative", Toast.LENGTH_SHORT).show()
             }
-//            builder.setNeutralButton("Neutral") { dialogInterface: DialogInterface, i: Int ->
-//                toast("Neutral")
-//            }
             builder.show()
         }
         return rootView

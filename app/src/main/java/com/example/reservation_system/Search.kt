@@ -59,6 +59,7 @@ class Search : Fragment() {
                 } else { // Title 검색
                     // TODO : Title 검색
                     // startAt, endAt은 index, ValueEventLisnter, ChildEventListenter : https://stack07142.tistory.com/282, .startAt(query).endAt(query + "\uf8ff")
+                    room_cnt = 0
                     database.child("Room").orderByChild("like")
                         .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
@@ -66,7 +67,7 @@ class Search : Fragment() {
                                     if ((snap.value as HashMap<*, *>)["title"].toString().contains(query)) {
                                         val map = snap.value as HashMap<*, *>
                                         search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
-                                        adapter.notifyDataSetChanged()
+                                        adapter.notifyItemInserted(room_cnt)
                                     }
                                 }
                             }
