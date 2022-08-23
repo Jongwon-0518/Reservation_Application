@@ -9,12 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.UserInfo
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_createmanage.*
@@ -57,26 +58,37 @@ class CreateManage : Fragment() {
             }
         }
 
-        // Read Database
-        database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").get().addOnSuccessListener { it ->
-            if (it.value != null){
-                val room_lists = it.value as ArrayList<*>
-                room_lists.forEach { a ->
-                    a?.run{
-                        database.child("Room").child(a as String).get().addOnSuccessListener {
-                            val map = it.value as HashMap<*, *>
-                            DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
-                            adapter.notifyItemInserted(room_cnt)
-                            room_cnt += 1
-                        }.addOnFailureListener{
-                            Log.e("firebase", "Error getting data", it)
-                        }
+        database.child("User").child(getUserPhoneNumber()).child("makeroom_codes")
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+
+                    database.child("Room").child(snapshot.value as String).get().addOnSuccessListener {
+                        val map = it.value as HashMap<*, *>
+                        DataList.add(
+                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+                        )
+                        adapter.notifyItemInserted(room_cnt)
+                        room_cnt += 1
                     }
                 }
-            }
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
 
         return rootView
     }

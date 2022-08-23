@@ -60,27 +60,30 @@ class Search : Fragment() {
                     }
 
                 } else { // Title 검색
-                    // TODO : Title 검색
-                    // startAt, endAt은 index, ValueEventLisnter, ChildEventListenter : https://stack07142.tistory.com/282, .startAt(query).endAt(query + "\uf8ff")
-                    database.child("Room").orderByChild("like")
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                (snapshot.value as HashMap<*, *>).forEach { snap ->
-                                    if ((snap.value as HashMap<*, *>)["title"].toString().contains(query)) {
-                                        val map = snap.value as HashMap<*, *>
-                                        search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
+                    if (query.length <= 1) {
+                        Toast.makeText(context, "두 글자 이상 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // startAt, endAt은 index, ValueEventLisnter, ChildEventListenter : https://stack07142.tistory.com/282, .startAt(query).endAt(query + "\uf8ff")
+                        database.child("Room").orderByChild("like")
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    (snapshot.value as HashMap<*, *>).forEach { snap ->
+                                        if ((snap.value as HashMap<*, *>)["title"].toString().contains(query)) {
+                                            val map = snap.value as HashMap<*, *>
+                                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
+                                        }
                                     }
+                                    if (search_DataList.size == 0) {
+                                        Toast.makeText(context, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                                    }
+                                    adapter.notifyDataSetChanged()
                                 }
-                                if (search_DataList.size == 0) {
-                                    Toast.makeText(context, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
-                                }
-                                adapter.notifyDataSetChanged()
-                            }
 
-                            override fun onCancelled(error: DatabaseError) {
-                                TODO("Not yet implemented")
-                            }
-                        })
+                                override fun onCancelled(error: DatabaseError) {
+                                    TODO("Not yet implemented")
+                                }
+                            })
+                    }
                 }
                 return true
             }
