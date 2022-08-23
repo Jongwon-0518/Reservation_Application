@@ -73,22 +73,12 @@ class Search : Fragment() {
                                 TODO("Not yet implemented")
                             }
                         })
-
-                    database.child("Room").orderByChild("information").get().addOnSuccessListener { it ->
-                        Log.d("msg", "굳굳" + it.value)
-//                        val map = it.value as HashMap<*, *>
-//                        search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String))
-//                        adapter.notifyDataSetChanged()
-                    }.addOnFailureListener{ }
-
-
                 }
                 return true
             }
 
             // 바뀔때마다
             override fun onQueryTextChange(newText: String?): Boolean {
-                println(newText)
                 return true
             }
         })
