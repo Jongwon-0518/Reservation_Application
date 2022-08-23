@@ -66,6 +66,7 @@
         <activity android:name=".RoomInformation" />
         <activity android:name=".MakeReservation" />
         <activity android:name=".EditRoom" />
+        <activity android:name=".Timesetting" />
     </application>
 
 </manifest>
