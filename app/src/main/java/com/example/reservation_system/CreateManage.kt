@@ -39,6 +39,7 @@ class CreateManage : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
         val DataList = arrayListOf<room_Data>()
         val adapter = HomeRecyclerViewAdapter(DataList)
+        var room_cnt = 0
 
         database = Firebase.database.reference
 
@@ -58,18 +59,19 @@ class CreateManage : Fragment() {
 
         // Read Database
         database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").get().addOnSuccessListener { it ->
-            val room_lists = it.value as ArrayList<*>
-            var cnt = 0
-            room_lists.forEach { a ->
-                a?.run{
-                    database.child("Room").child(a as String).get().addOnSuccessListener {
-                        val map = it.value as HashMap<*, *>
-                        DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String))
+            if (it.value != null){
+                val room_lists = it.value as ArrayList<*>
+                room_lists.forEach { a ->
+                    a?.run{
+                        database.child("Room").child(a as String).get().addOnSuccessListener {
+                            val map = it.value as HashMap<*, *>
+                            DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
 //                        adapter.notifyDataSetChanged()
-                        adapter.notifyItemInserted(cnt)
-                        cnt += 1
-                    }.addOnFailureListener{
-                        Log.e("firebase", "Error getting data", it)
+                            adapter.notifyItemInserted(room_cnt)
+                            room_cnt += 1
+                        }.addOnFailureListener{
+                            Log.e("firebase", "Error getting data", it)
+                        }
                     }
                 }
             }
@@ -101,7 +103,6 @@ class CreateManage : Fragment() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     inner class HomeRecyclerViewAdapter(val room_data_list : ArrayList<room_Data>) : RecyclerView.Adapter<HomeRecyclerViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewHolder {

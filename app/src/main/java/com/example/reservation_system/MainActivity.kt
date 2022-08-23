@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
         view_pager2.registerOnPageChangeCallback( PageChangeCallback() )
         bottomNavigationView.setOnNavigationItemSelectedListener { navigationSelected(it) }
 
-        // 사용자 프로필 가져오기
-        val name = getUserName()
-//        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
     // BottomNav Menu
