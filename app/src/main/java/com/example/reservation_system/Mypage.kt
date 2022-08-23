@@ -1,5 +1,6 @@
 package com.example.reservation_system
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.DialogInterface
@@ -26,6 +27,7 @@ class Mypage : Fragment() {
 
     private lateinit var database: DatabaseReference
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_mypage, container, false)
 
@@ -38,7 +40,7 @@ class Mypage : Fragment() {
             Firebase.auth.signOut()
             backToLogin()
         }
-        val name = getUserName()
+        var name = getUserName()
         val email = getUseremail()
         val phonenumber : String = email!!.replace("@abc.com", "")
 
@@ -55,9 +57,9 @@ class Mypage : Fragment() {
                     user.delete()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                                // TODO : 예약 남아있다면 회원 탈퇴 철회
                                 Log.d(TAG, "User account deleted.")
                                 database.child("User").child(phonenumber).removeValue()
-                                // TODO : 예약 남아있다면 회원 탈퇴 철회
                                 Toast.makeText(this.context, "회원 탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
                                 backToLogin()
                             }
@@ -71,31 +73,28 @@ class Mypage : Fragment() {
             val builder = AlertDialog.Builder(this.context)
             builder.setTitle("닉네임을 입력해주세요.")
             builder.setMessage("Message")
-            var editNickname = EditText(this.context)
+            val editNickname = EditText(this.context)
             builder.setView(editNickname)
 
-            // TODO : 닉네임 바꾸기 AlertDialog
             builder.setPositiveButton("바꾸기") { dialogInterface: DialogInterface, i: Int ->
-                val profileUpdates = userProfileChangeRequest {
-                    if (editNickname.length() == 0){
-                        Toast.makeText(requireContext(), "Positive", Toast.LENGTH_SHORT).show()
-
+                if (editNickname.length() == 0){
+                    Toast.makeText(requireContext(), "변경하실 닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    val profileUpdates = userProfileChangeRequest {
+                        displayName = editNickname.text.toString()
                     }
-                    displayName = "Jane Q. User"
-//                    photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
-                }
-
-                user!!.updateProfile(profileUpdates)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(TAG, "User profile updated.")
+                    user.updateProfile(profileUpdates)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(TAG, "User profile updated.")
+                                Toast.makeText(requireContext(), "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                                name = getUserName()
+                                rootView.MyPage_title.text = name + "님 환영합니다."
+                            }
                         }
-                    }
-                Toast.makeText(this.context, "Positive", Toast.LENGTH_SHORT).show()
+                }
             }
-            builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int ->
-                Toast.makeText(this.context, "Negative", Toast.LENGTH_SHORT).show()
-            }
+            builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> }
             builder.show()
         }
         return rootView

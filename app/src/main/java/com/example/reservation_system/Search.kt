@@ -34,14 +34,12 @@ class Search : Fragment() {
         val search_DataList = arrayListOf<room_Data>()
         val adapter = SearchRecyclerViewAdapter(search_DataList)
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
-        var room_cnt = 0
         searchView = rootView.findViewById(R.id.search_view)
         searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             // 제출 버튼 클릭시
             @SuppressLint("NotifyDataSetChanged")
             override fun onQueryTextSubmit(query: String?): Boolean {
-                println(query + "완료")
                 search_DataList.clear()
                 // 코드검색
                 if (query!!.startsWith("#")){
@@ -59,7 +57,6 @@ class Search : Fragment() {
                 } else { // Title 검색
                     // TODO : Title 검색
                     // startAt, endAt은 index, ValueEventLisnter, ChildEventListenter : https://stack07142.tistory.com/282, .startAt(query).endAt(query + "\uf8ff")
-                    room_cnt = 0
                     database.child("Room").orderByChild("like")
                         .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
@@ -67,9 +64,9 @@ class Search : Fragment() {
                                     if ((snap.value as HashMap<*, *>)["title"].toString().contains(query)) {
                                         val map = snap.value as HashMap<*, *>
                                         search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
-                                        adapter.notifyItemInserted(room_cnt)
                                     }
                                 }
+                                adapter.notifyDataSetChanged()
                             }
 
                             override fun onCancelled(error: DatabaseError) {

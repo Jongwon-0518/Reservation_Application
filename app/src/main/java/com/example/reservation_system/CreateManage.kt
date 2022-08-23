@@ -66,7 +66,6 @@ class CreateManage : Fragment() {
                         database.child("Room").child(a as String).get().addOnSuccessListener {
                             val map = it.value as HashMap<*, *>
                             DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
-//                        adapter.notifyDataSetChanged()
                             adapter.notifyItemInserted(room_cnt)
                             room_cnt += 1
                         }.addOnFailureListener{
