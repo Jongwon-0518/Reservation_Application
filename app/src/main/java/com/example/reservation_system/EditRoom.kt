@@ -100,18 +100,6 @@ class EditRoom : AppCompatActivity() {
                                 ).show()
                             })
 
-                        database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").child(room_number.toString()).setValue(null)
-                            .addOnSuccessListener(OnSuccessListener<Void?>
-                            //데이터베이스에 넘어간 이후 처리
-                            { })
-                            .addOnFailureListener(OnFailureListener {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "저장에 실패했습니다",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            })
-
                         this.finish()
                     }
                 })

@@ -62,18 +62,6 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
                 writeRoom(getMaker, roomId, getRoomTitle, getRoomCategory, getRoomInformation)
                 writeRoomNumber(roomId.toInt() + 1)
 
-                database.child("User").child(getUserPhoneNumber()).child("makeroom_codes").child(roomId).setValue(roomId)
-                    .addOnSuccessListener(OnSuccessListener<Void?>
-                    //데이터베이스에 넘어간 이후 처리
-                    { })
-                    .addOnFailureListener(OnFailureListener {
-                        Toast.makeText(
-                            applicationContext,
-                            "저장에 실패했습니다",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    })
-
             }.addOnFailureListener{
                 Log.e("firebase", "Error getting data", it)
             }
@@ -126,5 +114,4 @@ class Makeroom : AppCompatActivity(), OnMapReadyCallback {
         super.finish()
         overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
     }
-
 }

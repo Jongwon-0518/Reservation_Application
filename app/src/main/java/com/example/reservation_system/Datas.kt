@@ -26,7 +26,3 @@ class user_Data(
     var phonenumber: String,
     var reservation_code: String
 )
-
-class makeroom_Codes(
-    var makeroom_codes: Int
-)
