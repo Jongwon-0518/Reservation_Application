@@ -58,18 +58,18 @@ class CreateManage : Fragment() {
             }
         }
 
-        database.child("User").child(getUserPhoneNumber()).child("makeroom_codes")
+        database.child("Room").orderByChild("maker").equalTo(getUserPhoneNumber())
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-
-                    database.child("Room").child(snapshot.value as String).get().addOnSuccessListener {
-                        val map = it.value as HashMap<*, *>
-                        DataList.add(
-                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
-                        )
-                        adapter.notifyItemInserted(room_cnt)
-                        room_cnt += 1
-                    }
+                    println(snapshot)
+//                    database.child("Room").child(snapshot.value as String).get().addOnSuccessListener {
+//                        val map = it.value as HashMap<*, *>
+//                        DataList.add(
+//                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+//                        )
+//                        adapter.notifyItemInserted(room_cnt)
+//                        room_cnt += 1
+//                    }
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
