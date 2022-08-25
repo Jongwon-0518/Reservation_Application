@@ -18,7 +18,7 @@
             android:hint="방 이름"
             android:textSize="20sp"
             android:selectAllOnFocus="true"
-            android:maxLength="10" />
+            android:maxLength="20" />
 
         <EditText
             android:id="@+id/Category_make"
@@ -67,15 +67,26 @@
             android:textSize="15sp"
             android:text="Location" />
 
-
-
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/mapview"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <EditText
+            android:id="@+id/address_edittext"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            tools:layout="@layout/abc_search_view"
+            android:layout_height= "wrap_content"
+            android:layout_margin="10dp"
+            android:hint="주소"
+            android:maxLines="3"
+            android:focusable="false"
+            android:textSize="20sp"
+            android:selectAllOnFocus="true"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/detail_address_edittext"
+            android:layout_width="match_parent"
+            android:layout_height= "48dp"
+            android:layout_margin="10dp"
+            android:hint="상세 주소"
+            android:textSize="20sp"
+            android:selectAllOnFocus="true"
             android:visibility="gone" />
 
 
