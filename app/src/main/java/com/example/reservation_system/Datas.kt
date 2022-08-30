@@ -16,7 +16,7 @@ class room_Data(room_maker: String, room_title: String, room_info: String, room_
     var like = like
 }
 
-class room_Number(var number: Int){}
+class room_Number(var number: Int)
 
 class room_reservation_list(arr : ArrayList<Int>){
     var room_numbers = arr
@@ -25,4 +25,19 @@ class room_reservation_list(arr : ArrayList<Int>){
 class user_Data(
     var phonenumber: String,
     var reservation_code: String
+)
+
+class room_Menu(
+    // TODO : 사진 추가
+    var menu_list_number: Int,
+    var menu_name: String,
+    var menu_description: String,
+    var menu_cost: String
+)
+
+class room_Menu_database(
+    // TODO : 사진 추가
+    var menu_list_number: Int,
+    var menu_description: String,
+    var menu_cost: String
 )

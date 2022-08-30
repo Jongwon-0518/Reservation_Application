@@ -24,49 +24,49 @@
             app:tbgChildSpacing="auto">
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Monday"
+                android:id="@+id/button_Monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="월"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Tuesday"
+                android:id="@+id/button_Tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="화"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Wednesday"
+                android:id="@+id/button_Wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="수"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Thursday"
+                android:id="@+id/button_Thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="목"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Friday"
+                android:id="@+id/button_Friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="금"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Saturday"
+                android:id="@+id/button_Saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="토"
                 android:textSize="20sp" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/Sunday"
+                android:id="@+id/button_Sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="일"

@@ -2,6 +2,7 @@ package com.example.reservation_system
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,17 +25,11 @@ import kotlinx.android.synthetic.main.fragment_createmanage.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
 
 
-//             TODO : 방삭제시, 방 메뉴 시간 등
+//             TODO : 메뉴 지울 때, 메뉴 edit, recyclerView에서 이동이 menu_list_number에 반영
 class CreateManage : Fragment() {
 
     private lateinit var make_room_recylerView : RecyclerView
     private lateinit var database: DatabaseReference
-
-//    val DataList = arrayListOf(
-//        room_Data("010-XXXX-XXXX", "1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1, "health"),
-//        room_Data("010-XXXX-XXXX", "2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다.", 2, "health"),
-//        room_Data("010-XXXX-XXXX", "3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요.", 3, "health")
-//    )
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -66,7 +62,7 @@ class CreateManage : Fragment() {
                         room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
                     )
                     adapter.notifyItemInserted(room_cnt)
-                    room_cnt += 1
+                    room_cnt++
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -86,8 +82,13 @@ class CreateManage : Fragment() {
                     }
                 }
 
+                @RequiresApi(Build.VERSION_CODES.N)
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    TODO("Not yet implemented")
+                    // Data Removed
+                    val code = ((snapshot.value as HashMap<*, *>)["code"] as Long).toInt()
+                    DataList.removeIf{it.code == code}
+                    adapter.notifyDataSetChanged()
+                    room_cnt--
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {

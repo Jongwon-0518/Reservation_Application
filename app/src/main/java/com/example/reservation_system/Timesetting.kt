@@ -26,6 +26,33 @@ class Timesetting : AppCompatActivity() {
             this.finish()
         }
 
+        button_Monday.setOnClickListener{
+            println("Monday")
+        }
+        button_Tuesday.setOnClickListener{
+            println("Tuesday")
+        }
+        button_Wednesday.setOnClickListener{
+            println("Wednesday")
+        }
+        button_Thursday.setOnClickListener{
+            println("Thursday")
+        }
+        button_Friday.setOnClickListener{
+            println("Friday")
+        }
+        button_Saturday.setOnClickListener{
+            println("Saturday")
+        }
+        button_Sunday.setOnClickListener{
+            println("Sunday")
+        }
 
+
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(com.example.reservation_system.R.anim.slide_left_enter, com.example.reservation_system.R.anim.slide_left_exit)
     }
 }

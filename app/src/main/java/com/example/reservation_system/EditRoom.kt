@@ -53,10 +53,10 @@ class EditRoom : AppCompatActivity() {
 
         time_setting_button.setOnClickListener{
             startActivity(Intent(this, Timesetting::class.java))
-            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
 
-        edit_complete_button.setOnClickListener{
+        edit_save_button.setOnClickListener{
             val getMaker: String = User_number
             val getRoomTitle : String = if (room_title_edit.text.toString().trim().isEmpty()) {
                 room_title_edit.hint as String
@@ -111,6 +111,13 @@ class EditRoom : AppCompatActivity() {
                 })
                 .create()
                 .show()
+        }
+
+        menu_setting_button.setOnClickListener {
+            val intent = Intent(this, Menusetting::class.java)
+            intent.putExtra("code", room_number)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
     }
 
