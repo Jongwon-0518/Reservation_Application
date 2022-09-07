@@ -1,31 +1,23 @@
 package com.example.reservation_system
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.address_search_web_view.*
+import kotlinx.android.synthetic.main.edit_room.*
 import kotlinx.android.synthetic.main.make_room.*
 
 
 class Makeroom : AppCompatActivity() {
 
     private val SEARCH_ADDRESS_ACTIVITY = 1002
-
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,11 +57,16 @@ class Makeroom : AppCompatActivity() {
             val getRoomCategory: String = Category_make.text.toString()
             val getRoomInformation: String = room_info_make.text.toString()
             val getMaker: String = getUserPhoneNumber()
+            val location : String = if (Location_checkbox.isChecked) {
+                address_edittext.text.toString() + detail_address_edittext.text.toString()
+            } else {
+                ""
+            }
             var roomId: String
             // Read Database
             database.child("Room").child("number").get().addOnSuccessListener {
                 roomId = if (it.value != null) (it.value as HashMap<*, *>)["number"].toString() else "1"
-                writeRoom(getMaker, roomId, getRoomTitle, getRoomCategory, getRoomInformation)
+                writeRoom(getMaker, roomId, getRoomTitle, getRoomCategory, getRoomInformation, location)
                 writeRoomNumber(roomId.toInt() + 1)
 
             }.addOnFailureListener{
@@ -80,8 +77,8 @@ class Makeroom : AppCompatActivity() {
         }
     }
 
-    private fun writeRoom(room_maker: String, roomId: String, title: String, room_category: String, information: String) {
-        val room = room_Data(room_maker, title, information, roomId.toInt(), room_category)
+    private fun writeRoom(room_maker: String, roomId: String, title: String, room_category: String, information: String, location: String) {
+        val room = room_Data(room_maker, title, information, roomId.toInt(), room_category, location)
 
         //데이터 저장
         database.child("Room").child(roomId).setValue(room)

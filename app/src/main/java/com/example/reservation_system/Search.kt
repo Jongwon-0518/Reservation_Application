@@ -52,7 +52,7 @@ class Search : Fragment() {
                                 Toast.makeText(context, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
                         } else {
                             val map = it.value as HashMap<*, *>
-                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
+                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt()))
                             adapter.notifyDataSetChanged()
                         }
                     }.addOnFailureListener{
@@ -70,7 +70,7 @@ class Search : Fragment() {
                                     (snapshot.value as HashMap<*, *>).forEach { snap ->
                                         if ((snap.value as HashMap<*, *>)["title"].toString().contains(query)) {
                                             val map = snap.value as HashMap<*, *>
-                                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt()))
+                                            search_DataList.add(room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt()))
                                         }
                                     }
                                     if (search_DataList.size == 0) {

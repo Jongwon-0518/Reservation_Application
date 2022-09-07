@@ -46,7 +46,7 @@ class Home : Fragment() {
                     if (snapshot.key != "number") {
                         val map = snapshot.value as HashMap<*, *>
                         DataList.add(
-                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
                         )
                         recyclerViewadapter.notifyItemInserted(0)
                     }
@@ -60,7 +60,7 @@ class Home : Fragment() {
                         var index = 0
                         DataList.forEach{ it ->
                             if (it.code == code) {
-                                DataList[index] = room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+                                DataList[index] = room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
                                 recyclerViewadapter.notifyItemChanged(index)
                                 return@loop
                             }
