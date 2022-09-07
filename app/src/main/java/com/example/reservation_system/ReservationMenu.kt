@@ -49,11 +49,13 @@ class ReservationMenu : AppCompatActivity() {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // 도중 삭제 가능
-                    (snapshot.value as HashMap<*, *>).forEach { snap ->
-                        val map = snap.value as HashMap<*, *>
-                        Menu_list.add(room_Menu((map["menu_list_number"] as Long).toInt(), map["menu_name"].toString(), map["menu_description"].toString(), map["menu_cost"].toString()))
+                    if (snapshot.value != null){
+                        (snapshot.value as HashMap<*, *>).forEach { snap ->
+                            val map = snap.value as HashMap<*, *>
+                            Menu_list.add(room_Menu((map["menu_list_number"] as Long).toInt(), map["menu_name"].toString(), map["menu_description"].toString(), map["menu_cost"].toString()))
+                        }
+                        adapter.notifyDataSetChanged()
                     }
-                    adapter.notifyDataSetChanged()
                 }
 
                 override fun onCancelled(error: DatabaseError) {

@@ -40,7 +40,7 @@ class Home : Fragment() {
         recyclerView1.layoutManager = LinearLayoutManager(requireContext())
         recyclerView1.adapter = recyclerViewadapter
 
-        database.child("Room")
+        database.child("Room").orderByChild("like")
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     if (snapshot.key != "number") {
@@ -54,17 +54,19 @@ class Home : Fragment() {
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     // Data Changed
-                    val map = snapshot.value as HashMap<*, *>
-                    val code = (map["code"] as Long).toInt()
-                    run loop@{
-                        var index = 0
-                        DataList.forEach{ it ->
-                            if (it.code == code) {
-                                DataList[index] = room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
-                                recyclerViewadapter.notifyItemChanged(index)
-                                return@loop
+                    if (snapshot.key != "number"){
+                        val map = snapshot.value as HashMap<*, *>
+                        val code = (map["code"] as Long).toInt()
+                        run loop@{
+                            var index = 0
+                            DataList.forEach{ it ->
+                                if (it.code == code) {
+                                    DataList[index] = room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
+                                    recyclerViewadapter.notifyItemChanged(index)
+                                    return@loop
+                                }
+                                index ++
                             }
-                            index ++
                         }
                     }
                 }
