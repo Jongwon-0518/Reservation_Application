@@ -34,10 +34,3 @@ class room_Menu(
     var menu_description: String,
     var menu_cost: String
 )
-
-class room_Menu_database(
-    // TODO : 사진 추가
-    var menu_list_number: Int,
-    var menu_description: String,
-    var menu_cost: String
-)

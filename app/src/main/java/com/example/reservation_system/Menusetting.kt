@@ -23,18 +23,20 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_menusetting.*
 import kotlinx.android.synthetic.main.menu_list.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
+import kotlin.properties.Delegates
 
 class Menusetting : AppCompatActivity() {
 
     private lateinit var menu_RecylerView : RecyclerView
     private lateinit var database: DatabaseReference
+    private var room_code by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menusetting)
 
         database = Firebase.database.reference
-        val room_code = intent.getIntExtra("code", 0)
+        room_code = intent.getIntExtra("code", 0)
         val Menu_list = arrayListOf<room_Menu>()
         var menu_cnt = 0
 
@@ -50,10 +52,15 @@ class Menusetting : AppCompatActivity() {
         val helper = ItemTouchHelper(itemTouchHelperCallback)
         helper.attachToRecyclerView(menu_RecylerView)
 
+        imageButton_menusetting_back.setOnClickListener{
+            finish()
+        }
+
+        val intent = Intent(this, MakeMenu::class.java)
+
         make_menu_button.setOnClickListener {
-            val intent = Intent(this, MakeMenu::class.java)
-            intent.putExtra("room_code", room_code)
             intent.putExtra("menu_cnt", menu_cnt)
+            intent.putExtra("room_code", room_code)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
@@ -63,7 +70,7 @@ class Menusetting : AppCompatActivity() {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val map = snapshot.value as HashMap<*, *>
                     Menu_list.add(
-                        room_Menu((map["menu_list_number"] as Long).toInt(), snapshot.key.toString(), map["menu_description"].toString(), map["menu_cost"].toString())
+                        room_Menu((map["menu_list_number"] as Long).toInt(), map["menu_name"].toString(), map["menu_description"].toString(), map["menu_cost"].toString())
                     )
                     adapter.notifyItemInserted(menu_cnt)
                     menu_cnt++
@@ -78,7 +85,7 @@ class Menusetting : AppCompatActivity() {
                         var index = 0
                         Menu_list.forEach{ it ->
                             if (it.menu_list_number == menu_number) {
-                                Menu_list[index] = room_Menu((map["menu_list_number"] as Long).toInt(), snapshot.key.toString(), map["menu_description"].toString(), map["menu_cost"].toString())
+                                Menu_list[index] = room_Menu((map["menu_list_number"] as Long).toInt(), map["menu_name"].toString(), map["menu_description"].toString(), map["menu_cost"].toString())
                                 adapter.notifyItemChanged(index)
                                 return@loop
                             }
@@ -91,7 +98,8 @@ class Menusetting : AppCompatActivity() {
                 @RequiresApi(Build.VERSION_CODES.N)
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     // Data Removed
-                    Menu_list.removeIf{it.menu_name == snapshot.key.toString()}
+                    val erase_number = ((snapshot.value as HashMap<*, *>)["menu_list_number"] as Long).toInt()
+                    Menu_list.removeIf{it.menu_list_number == erase_number}
                     adapter.notifyDataSetChanged()
                     menu_cnt--
                     if (menu_cnt == 0) textView_pleaseaddmenu.visibility = View.VISIBLE
@@ -106,9 +114,6 @@ class Menusetting : AppCompatActivity() {
                 }
 
             })
-
-
-
 
     }
 
@@ -128,14 +133,17 @@ class Menusetting : AppCompatActivity() {
             desc.text = item.menu_description
 
             // TODO : When menu clicked
-//            itemView.setOnClickListener {
-//                activity?.let {
-//                    val intent = Intent(context, EditRoom::class.java)
-//                    intent.putExtra("code", item.code)
-//                    startActivity(intent)
-//                    activity!!.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
-//                }
-//            }
+            itemView.setOnClickListener {
+                    val intent = Intent(applicationContext, MakeMenu::class.java)
+                    intent.putExtra("mode", 1)
+                    intent.putExtra("name", item.menu_name)
+                    intent.putExtra("cost", item.menu_cost)
+                    intent.putExtra("desc", item.menu_description)
+                    intent.putExtra("menu_list_number", item.menu_list_number)
+                    intent.putExtra("room_code", room_code)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
+            }
         }
     }
 

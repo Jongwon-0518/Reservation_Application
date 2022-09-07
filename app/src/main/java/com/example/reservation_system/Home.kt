@@ -1,41 +1,92 @@
 package com.example.reservation_system
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.room_list.view.*
 
 class Home : Fragment() {
 
     lateinit var recyclerView1: RecyclerView
+    private lateinit var database: DatabaseReference
 
-    // TODO : 서버의 데이터베이스와 연결
-    val DataList = arrayListOf(
-        room_Data("010-XXXX-XXXX", "1번방", "1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다. 1번방 설명입니다.", 1, "health"),
-        room_Data("010-XXXX-XXXX", "2번방", "2번방 입니다. 2번방 입니다. 2번방 입니다. 2번방 입니다.2번방 입니다. 2번방 입니다.", 2, "health"),
-        room_Data("010-XXXX-XXXX", "3번방", "3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요. 3번방 이에요.", 3, "health"),
-        room_Data("010-XXXX-XXXX", "4번방", "4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다. 4번방 입니다.", 4, "health"),
-        room_Data("010-XXXX-XXXX", "5번방", "5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방 5번방", 5, "health"),
-        room_Data("010-XXXX-XXXX", "6번방", "6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다. 6번방 입니다.", 6, "health"),
-        room_Data("010-XXXX-XXXX", "7번방", "7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물 7번방의 선물", 7, "health"),
-        room_Data("010-XXXX-XXXX", "8번방", "8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~ 8입니당~~", 8, "health")
-    )
+    val DataList = ArrayList<room_Data>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        database = Firebase.database.reference
+
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView1 = rootView.findViewById(R.id.recyclerView_main)
         // 구분선
+        val recyclerViewadapter = HomeRecyclerViewAdapter(DataList)
         recyclerView1.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         recyclerView1.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView1.adapter = HomeRecyclerViewAdapter(DataList)
+        recyclerView1.adapter = recyclerViewadapter
+
+        database.child("Room")
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    if (snapshot.key != "number") {
+                        val map = snapshot.value as HashMap<*, *>
+                        DataList.add(
+                            room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+                        )
+                        recyclerViewadapter.notifyItemInserted(0)
+                    }
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    // Data Changed
+                    val map = snapshot.value as HashMap<*, *>
+                    val code = (map["code"] as Long).toInt()
+                    run loop@{
+                        var index = 0
+                        DataList.forEach{ it ->
+                            if (it.code == code) {
+                                DataList[index] = room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, (map["like"] as Long).toInt())
+                                recyclerViewadapter.notifyItemChanged(index)
+                                return@loop
+                            }
+                            index ++
+                        }
+                    }
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                @RequiresApi(Build.VERSION_CODES.N)
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    // Data Removed
+                    val code = ((snapshot.value as HashMap<*, *>)["code"] as Long).toInt()
+                    DataList.removeIf{it.code == code}
+                    recyclerViewadapter.notifyDataSetChanged()
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
 
         return rootView
     }

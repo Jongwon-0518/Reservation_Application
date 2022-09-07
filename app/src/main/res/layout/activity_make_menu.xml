@@ -49,24 +49,12 @@
         />
 
     <LinearLayout
+        android:id="@+id/linearlayout_menu_firstmake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="5"
+        android:layout_marginTop="15dp"
         >
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-
-        <Button
-            android:id="@+id/button_makemenu_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="취소"
-            android:layout_weight="1"
-            />
 
         <View
             android:layout_width="0dp"
@@ -87,7 +75,54 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
+
+        <Button
+            android:id="@+id/button_makemenu_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:layout_weight="1"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_menu_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:id="@+id/button_makemenu_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="SAVE"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_margin="15dp" />
+
+        <Button
+            android:id="@+id/button_makemenu_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Delete"
+            android:backgroundTint="#FF0000"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_margin="15dp" />
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

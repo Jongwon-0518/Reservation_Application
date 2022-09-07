@@ -32,6 +32,7 @@
                 />
 
             <TextView
+                android:id="@+id/textView_roomInfo_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Room Title"
@@ -46,7 +47,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/room_code_TextView"
+            android:id="@+id/textView_roomInfo_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Code"
@@ -56,6 +57,7 @@
             />
 
         <TextView
+            android:id="@+id/textView_roomInfo_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="영업 중 / 24:00에 영업 종료"
@@ -64,6 +66,7 @@
             />
 
         <TextView
+            android:id="@+id/textView_roomInfo_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="분류 : 운동, 헬스, 뷰티"
@@ -72,6 +75,7 @@
             />
 
         <TextView
+            android:id="@+id/textView_roomInfo_information"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:text="소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글 소개글
@@ -81,14 +85,7 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="메뉴 \n메뉴\n메뉴\n메뉴"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            />
-
-        <TextView
+            android:id="@+id/textView_roomInfo_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="전화번호 : 010-xxxx-xxxx"
@@ -98,11 +95,11 @@
             />
 
         <Button
-            android:id="@+id/button_goreservation"
+            android:id="@+id/button_gomenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="예약하러 가기"
+            android:text="메뉴 보러가기"
             />
 
     </LinearLayout>

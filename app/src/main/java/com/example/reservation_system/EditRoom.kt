@@ -25,7 +25,6 @@ class EditRoom : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_room)
@@ -84,18 +83,18 @@ class EditRoom : AppCompatActivity() {
 
             AlertDialog.Builder(this)
                 .setTitle("Delete")
-                .setMessage("지우시겠습니까?")
+                .setMessage("삭제하시겠습니까??")
                 .setPositiveButton("네", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, which: Int) {
                         Log.d("MyTag", "positive")
                         database.child("Room").child(room_number.toString()).setValue(null)
                             .addOnSuccessListener(OnSuccessListener<Void?>
                             //데이터베이스에 넘어간 이후 처리
-                            { Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_SHORT).show() })
+                            { Toast.makeText(applicationContext, "삭제를 완료했습니다", Toast.LENGTH_SHORT).show() })
                             .addOnFailureListener(OnFailureListener {
                                 Toast.makeText(
                                     applicationContext,
-                                    "저장에 실패했습니다",
+                                    "삭제에 실패했습니다",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             })

@@ -6,35 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ReservationMenu"
     android:orientation="vertical"
-
     >
 
-    <Button
-        android:id="@+id/menu1"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="메뉴1"
-        android:layout_margin = "20dp"
+        android:text="Menu"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="italic"
         />
-    <Button
-        android:id="@+id/menu2"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_reservationmenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="메뉴2"
-        android:layout_margin = "20dp"
-        />
-    <Button
-        android:id="@+id/menu3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="메뉴3"
-        android:layout_margin = "20dp"
-        />
-
-
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>
