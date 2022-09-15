@@ -110,7 +110,8 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"/>
 
                         <EditText
                             android:id="@+id/Mon_finish_time"
@@ -120,7 +121,8 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"/>
 
                     </LinearLayout>
 
@@ -169,7 +171,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Tue_finish_time"
@@ -179,7 +183,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 
@@ -228,7 +234,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Wed_finish_time"
@@ -238,7 +246,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 
@@ -287,7 +297,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Thu_finish_time"
@@ -297,7 +309,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 
@@ -346,7 +360,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Fri_finish_time"
@@ -356,7 +372,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 
@@ -405,7 +423,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Sat_finish_time"
@@ -415,7 +435,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 
@@ -464,7 +486,9 @@
                             android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                         <EditText
                             android:id="@+id/Sun_finish_time"
@@ -474,7 +498,9 @@
                             android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
                             android:maxLength="10"
                             android:selectAllOnFocus="true"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            />
 
                     </LinearLayout>
 

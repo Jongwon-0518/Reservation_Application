@@ -65,9 +65,26 @@ class Timesetting : AppCompatActivity() {
 
         time_setting_save_button.setOnClickListener {
             for (day in 0..6) {
-                if (start_times[day].text.toString().length == 0 || finish_times[day].text.toString().length == 0){
+                val st = start_times[day].text.toString()
+                val fn = finish_times[day].text.toString()
+                var a = 0
+                if (st != "휴무"){
+                    a = 1
+                }
+                if (st.length == 0 || fn.length == 0){
                     Toast.makeText(this, "모든 요일을 입력해주세요.", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
+                } else if (a == 1){
+                    val st_int = st.toInt()
+                    val fn_int = fn.toInt()
+                    if (st_int < 0 || st_int > 2400 || fn_int < 0 || fn_int > 2400 || (st_int % 100) > 59){
+                        Toast.makeText(this, "알맞은 시간 형태를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    if (st_int > fn_int){
+                        Toast.makeText(this, "시작시간이 종료시간보다 큽니다.", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
                 }
             }
 
