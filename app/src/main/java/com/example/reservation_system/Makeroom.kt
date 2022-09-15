@@ -26,7 +26,6 @@ class Makeroom : AppCompatActivity() {
 
         database = Firebase.database.reference
 
-
         Private_checkbox.setOnCheckedChangeListener{ _, isChecked ->
             if(isChecked){
                 Private_password.visibility = View.VISIBLE
@@ -57,10 +56,10 @@ class Makeroom : AppCompatActivity() {
             val getRoomCategory: String = Category_make.text.toString()
             val getRoomInformation: String = room_info_make.text.toString()
             val getMaker: String = getUserPhoneNumber()
-            val location : String = if (Location_checkbox.isChecked) {
-                address_edittext.text.toString() + detail_address_edittext.text.toString()
+            val location : String = if (Location_checkbox.isChecked && address_edittext.text.toString() != "") {
+                address_edittext.text.toString() + " " + detail_address_edittext.text.toString()
             } else {
-                ""
+                "비공개"
             }
             var roomId: String
             // Read Database
@@ -84,7 +83,17 @@ class Makeroom : AppCompatActivity() {
         database.child("Room").child(roomId).setValue(room)
             .addOnSuccessListener(OnSuccessListener<Void?>
             //데이터베이스에 넘어간 이후 처리
-            { Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_SHORT).show() })
+            {
+                // 성공시 요일 기본 Form 추가
+                Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_SHORT).show()
+                val taskMap = HashMap<String, Any>()
+                val days = ArrayList<ArrayList<String>>()
+                for (i in 0..6) {
+                    days.add(arrayListOf("", ""))
+                }
+                taskMap.put("요일", days)
+                database.child("Room").child(roomId).updateChildren(taskMap)
+            })
             .addOnFailureListener(OnFailureListener {
                 Toast.makeText(
                     applicationContext,

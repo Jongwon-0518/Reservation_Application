@@ -31,7 +31,6 @@ class EditRoom : AppCompatActivity() {
 
         val User_number = getUserPhoneNumber()
 
-        // TODO : 나머지 부분도 채우기
         val room_number = intent.getIntExtra("code", 0)
         Log.d("-----------", room_number.toString())
 
@@ -66,14 +65,15 @@ class EditRoom : AppCompatActivity() {
         }
 
         address_edittext_edit.setOnClickListener{
-
             val intent = Intent(this, AddressSearch::class.java)
             startActivityForResult(intent, SEARCH_ADDRESS_ACTIVITY)
 
         }
 
         time_setting_button.setOnClickListener{
-            startActivity(Intent(this, Timesetting::class.java))
+            val intent = Intent(this, Timesetting::class.java)
+            intent.putExtra("room_code", room_number)
+            startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
         }
 
@@ -106,7 +106,6 @@ class EditRoom : AppCompatActivity() {
         }
 
         delete_button.setOnClickListener{
-
 
             AlertDialog.Builder(this)
                 .setTitle("Delete")

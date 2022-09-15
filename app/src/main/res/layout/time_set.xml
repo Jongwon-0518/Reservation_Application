@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,71 +15,6 @@
             android:text="요일별로 시간대를 설정하세요!"
             android:textAlignment="center" />
 
-        <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
-            android:id="@+id/group_weekdays"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:tbgChildSpacing="auto">
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Monday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Tuesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="화"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Wednesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Thursday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="목"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Friday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="금"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Saturday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="토"
-                android:textSize="20sp" />
-
-            <com.nex3z.togglebuttongroup.button.CircularToggle
-                android:id="@+id/button_Sunday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일"
-                android:textSize="20sp" />
-
-
-        </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
-
-        <CheckBox
-            android:id="@+id/holiday_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="공휴일 쉬는 날 적용" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -89,33 +23,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/open_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_margin="10dp"
-                    android:hint="오픈 시간 ( Ex: 10시 10분 -> 1010 )"
-                    android:maxLength="10"
-                    android:selectAllOnFocus="true"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/finish_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_margin="10dp"
-                    android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
-                    android:maxLength="10"
-                    android:selectAllOnFocus="true"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="예약할 시간 버튼의 간격을 설정해주세요!"
-                    android:textAlignment="center" />
 
                 <RadioGroup
                     android:id="@+id/time_interval"
@@ -134,6 +41,7 @@
                         android:id="@+id/half_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="30분 간격" />
 
                     <RadioButton
@@ -141,8 +49,436 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="60분 간격" />
-
                 </RadioGroup>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="예약 시간 간격을 선택해주세요!"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="쉬는날은 요일 아래 체크박스를 체크해주세요!"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="월"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Mon_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Mon_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Mon_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="화"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Tue_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Tue_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Tue_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="수"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Wed_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Wed_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Wed_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="목"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Thu_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Thu_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Thu_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="금"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Fri_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Fri_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Fri_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="토"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Sat_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Sat_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Sat_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="일"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            />
+
+                        <CheckBox
+                            android:id="@+id/Sun_holiday_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/Sun_open_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="오픈 시간 ( Ex: 9시 10분 -> 0910 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/Sun_finish_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:hint="마감 시간 ( Ex: 22시 10분 -> 2210 )"
+                            android:maxLength="10"
+                            android:selectAllOnFocus="true"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/reservation_button_container"

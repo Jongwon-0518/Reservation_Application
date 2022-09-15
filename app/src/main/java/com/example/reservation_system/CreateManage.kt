@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.room_list.view.*
 
 
 //              TODO : 메뉴 지울 때, 메뉴 edit, recyclerView에서 이동이 menu_list_number에 반영
-//              TODO : 메뉴 시간, 예약 하러가서 시간 고르기
+//              TODO : 메뉴에서 시간고를때
 class CreateManage : Fragment() {
 
     private lateinit var make_room_recylerView : RecyclerView
@@ -37,7 +37,6 @@ class CreateManage : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_createmanage, container, false)
         val DataList = arrayListOf<room_Data>()
         val adapter = HomeRecyclerViewAdapter(DataList)
-        var room_cnt = 0
 
         database = Firebase.database.reference
 
@@ -59,11 +58,10 @@ class CreateManage : Fragment() {
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val map = snapshot.value as HashMap<*, *>
-                    DataList.add(
+                    DataList.add(0,
                         room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
                     )
-                    adapter.notifyItemInserted(room_cnt)
-                    room_cnt++
+                    adapter.notifyItemInserted(0)
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -89,7 +87,6 @@ class CreateManage : Fragment() {
                     val code = ((snapshot.value as HashMap<*, *>)["code"] as Long).toInt()
                     DataList.removeIf{it.code == code}
                     adapter.notifyDataSetChanged()
-                    room_cnt--
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {

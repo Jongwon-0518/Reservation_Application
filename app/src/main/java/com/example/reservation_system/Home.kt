@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,10 +43,11 @@ class Home : Fragment() {
 
         database.child("Room").orderByChild("like")
             .addChildEventListener(object : ChildEventListener {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     if (snapshot.key != "number") {
                         val map = snapshot.value as HashMap<*, *>
-                        DataList.add(
+                        DataList.add(0,
                             room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
                         )
                         recyclerViewadapter.notifyItemInserted(0)
@@ -85,7 +87,7 @@ class Home : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Log.e("firebase", "Error while createing Home : " + error)
                 }
 
             })

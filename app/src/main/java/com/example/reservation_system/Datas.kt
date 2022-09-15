@@ -15,7 +15,6 @@ class room_Data(room_maker: String, room_title: String, room_info: String, room_
     var room_category = room_category
     var location = location
     var like = like
-
 }
 
 class room_Number(var number: Int)

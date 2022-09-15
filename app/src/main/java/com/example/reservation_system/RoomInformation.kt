@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
@@ -27,12 +29,28 @@ class RoomInformation : AppCompatActivity() {
 
         database.child("Room").child(room_code.toString()).get().addOnSuccessListener { it ->
             val map = it.value as HashMap<*, *>
+            val weektime = arrayListOf(textView_roomInfo_mon_time, textView_roomInfo_tue_time, textView_roomInfo_wed_time,
+                textView_roomInfo_thu_time, textView_roomInfo_fri_time, textView_roomInfo_sat_time, textView_roomInfo_sun_time)
+            val week = listOf("월", "화", "수", "목", "금", "토", "일")
+            val per_week = map["요일"] as ArrayList<*>
+            for (day in 0..6) {
+                val d = per_week[day] as ArrayList<*>
+                if (d[0].toString() == ""){
+                    weektime[day].visibility = GONE
+                    textView_room_time.text = "영업시간이 설정되지 않았습니다."
+                    continue
+                }
+                if (d[0].toString() == "휴무"){
+                    weektime[day].text = week[day] + " : 휴무"
+                    continue
+                }
+                weektime[day].text = week[day] + " : " + d[0].toString() + " ~ " + d[1]
+            }
             textView_roomInfo_title.text = map["title"] as String
-            // TODO : Time
-            textView_roomInfo_time.text = "영업 시간 : " + "09:00 ~ 20:30"
             textView_roomInfo_category.text = "카테고리 : " + map["room_category"] as String
             textView_roomInfo_information.text = map["information"] as String
             textView_roomInfo_phonenumber.text = "전화번호 : " + map["maker"] as String
+            textView_roomInfo_location.text = "위치 : " + map["location"] as String
 
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data while RoomInformation ", it)

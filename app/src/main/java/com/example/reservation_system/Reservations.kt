@@ -35,13 +35,11 @@ class Reservations : Fragment() {
         reservation_Data(1, "파마", 200, 20220202, 1300),
         reservation_Data(1, "pt", 100, 20220202, 1500),
         reservation_Data(1, "커트", 100, 20220202, 900),
-        reservation_Data(1, "메이플ㅋ", 100, 20220202, 1300)
     )
     val previous_My_Reservations_time = arrayListOf(
         reservation_Data(1, "파마", 200, 20220202, 1300),
         reservation_Data(1, "pt", 100, 20220202, 1500),
         reservation_Data(1, "커트", 100, 20220202, 900),
-        reservation_Data(1, "메이플ㅋ", 100, 20220202, 1300)
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
