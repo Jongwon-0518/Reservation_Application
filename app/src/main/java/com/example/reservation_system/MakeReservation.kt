@@ -144,7 +144,7 @@ class MakeReservation : AppCompatActivity() {
 
     private fun get_dialog(time : String) {
         val month = (instance.get(Calendar.MONTH) + 1).toString().padStart(2, '0')
-        val date = instance.get(Calendar.DATE).toString()
+        val date = instance.get(Calendar.DATE).toString().padStart(2, '0')
         val builder = AlertDialog.Builder(this)
         builder.setTitle("$month 월 $date 일 $time")
         builder.setMessage(menu_name + "을 예약하시겠습니까?")

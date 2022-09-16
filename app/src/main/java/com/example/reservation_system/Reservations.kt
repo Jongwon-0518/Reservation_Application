@@ -127,7 +127,6 @@ class Reservations : Fragment() {
                             // TODO : prev에 데이터 추가, 원래꺼에 삭제
                             return
                         }
-
                     }
                     val time_format = reservation_time.slice(0..5) + ":" + reservation_time.slice(6..7)
                     reservations.add(0,
