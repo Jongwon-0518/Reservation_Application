@@ -37,3 +37,4 @@ class room_Menu(
 )
 
 class reservation_Data(var code : Int, var title : String, var menu : String, var time : String, var user : String)
+class reservation_Data_withkey(var code : Int, var title : String, var menu : String, var time : String, var user : String, var key : String)

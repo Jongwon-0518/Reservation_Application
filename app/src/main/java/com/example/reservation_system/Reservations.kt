@@ -1,6 +1,8 @@
 package com.example.reservation_system
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -43,8 +45,8 @@ class Reservations : Fragment() {
 //        room_Data("010-XXXX-XXXX", "8번방", "8입니당", 8, "health", "")
 //    )
 
-    val now_My_Reservations = arrayListOf<reservation_Data>()
-    val previous_My_Reservations = arrayListOf<reservation_Data>()
+    val now_My_Reservations = arrayListOf<reservation_Data_withkey>()
+    val previous_My_Reservations = arrayListOf<reservation_Data_withkey>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_reservations, container, false)
@@ -56,15 +58,15 @@ class Reservations : Fragment() {
         // Recyclerveiw
         // 구분선
         my_Reservations.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
-        val my_Reservations_adapter = RecyclerView_Reservations(now_My_Reservations)
+        val my_Reservations_adapter = RecyclerView_Reservations(now_My_Reservations, 0)
         my_Reservations.adapter = my_Reservations_adapter
 
         previous_Reservations.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
-        val previous_Reservations_adapter = RecyclerView_Reservations(now_My_Reservations)
+        val previous_Reservations_adapter = RecyclerView_Reservations(previous_My_Reservations, 1)
         previous_Reservations.adapter = previous_Reservations_adapter
 
-        get_db_reservations(now_My_Reservations, my_Reservations_adapter, 0)
-        get_db_reservations(previous_My_Reservations, previous_Reservations_adapter, 1)
+        get_db_reservations(now_My_Reservations, my_Reservations_adapter)
+        get_db_prev_reservations(previous_My_Reservations, previous_Reservations_adapter)
 
         return rootView
     }
@@ -77,7 +79,7 @@ class Reservations : Fragment() {
         val time : TextView = v.reservation_room_time
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: reservation_Data) {
+        fun bind(item: reservation_Data_withkey, mode: Int) {
             title.text = item.title
             code.text = item.code.toString()
             menu.text = item.menu
@@ -88,8 +90,18 @@ class Reservations : Fragment() {
 
             itemView.setOnClickListener {
                 activity?.let {
-                    val myReservationDialog = MyReservationImfo(requireContext())
-                    myReservationDialog.show()
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle(title.text.toString() + "의 " + menu.text.toString() + time.text)
+                    builder.setMessage("해당 예약을 삭제하시겠습니까?")
+                    builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int ->
+                        if (mode == 0){
+                            database.child("Reservation").child(item.key).setValue(null)
+                        } else {
+                            database.child("p_Reservation").child(item.key).setValue(null)
+                        }
+                    }
+                    builder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int -> }
+                    builder.show()
                 }
             }
         }
@@ -97,7 +109,7 @@ class Reservations : Fragment() {
 
 
     // Reservations RecyclerView
-    inner class RecyclerView_Reservations(val my_reservations_info : ArrayList<reservation_Data>) : RecyclerView.Adapter<RecyclerViewHolder_Reservations>() {
+    inner class RecyclerView_Reservations(val my_reservations_info : ArrayList<reservation_Data_withkey>, val mode : Int) : RecyclerView.Adapter<RecyclerViewHolder_Reservations>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder_Reservations {
             val cellForRow = LayoutInflater.from(parent.context).inflate(R.layout.reservation_room_list, parent, false)
@@ -105,31 +117,62 @@ class Reservations : Fragment() {
         }
 
         override fun onBindViewHolder(holder: RecyclerViewHolder_Reservations, position: Int) {
-            holder.bind(my_reservations_info[position])
+            holder.bind(my_reservations_info[position], mode)
         }
 
         override fun getItemCount() = my_reservations_info.size
     }
 
-    private fun get_db_reservations(reservations : ArrayList<reservation_Data>, r_adapter : RecyclerView_Reservations, mode : Int){
-        var reservation_type = "Reservation"
-        if (mode == 1){
-            reservation_type = "p_Reservation"
-        }
-        database.child(reservation_type).orderByChild("user").equalTo(getUserPhoneNumber())
+
+    private fun get_db_reservations(reservations: ArrayList<reservation_Data_withkey>, r_adapter: RecyclerView_Reservations){
+        database.child("Reservation").orderByChild("user").equalTo(getUserPhoneNumber())
             .addChildEventListener(object : ChildEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val map = snapshot.value as HashMap<*, *>
                     val reservation_time = map["time"] as String
-                    if (mode == 0){
-                        if (convertTimestampToDate(System.currentTimeMillis()).toInt() > reservation_time.toInt()){
-                            // TODO : prev에 데이터 추가, 원래꺼에 삭제
-                            return
-                        }
+                    if (convertTimestampToDate(System.currentTimeMillis()).toInt() > reservation_time.toInt()){
+                        write_prev_reservations(reservation_Data_withkey((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, reservation_time, map["user"] as String, snapshot.key.toString()))
+                        database.child("Reservation").child(snapshot.key as String).setValue(null)
+                        return
+                    } else {
+                        reservations.add(0,
+                            reservation_Data_withkey((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, reservation_time, map["user"] as String, snapshot.key.toString())
+                        )
+                        r_adapter.notifyItemInserted(0)
                     }
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                @RequiresApi(Build.VERSION_CODES.N)
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    reservations.removeIf{it.key == snapshot.key}
+                    r_adapter.notifyDataSetChanged()
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("firebase", "Error while createing Home : " + error)
+                }
+
+            })
+    }
+
+    private fun get_db_prev_reservations(reservations : ArrayList<reservation_Data_withkey>, r_adapter : RecyclerView_Reservations){
+        database.child("p_Reservation").orderByChild("user").equalTo(getUserPhoneNumber())
+            .addChildEventListener(object : ChildEventListener {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    val map = snapshot.value as HashMap<*, *>
                     reservations.add(0,
-                        reservation_Data((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, reservation_time, map["user"] as String)
+                        reservation_Data_withkey((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, map["time"] as String, map["user"] as String, snapshot.key.toString())
                     )
                     r_adapter.notifyItemInserted(0)
                 }
@@ -141,8 +184,7 @@ class Reservations : Fragment() {
                 @SuppressLint("NotifyDataSetChanged")
                 @RequiresApi(Build.VERSION_CODES.N)
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    val map = snapshot.value
-                    reservations.removeIf{it == map}
+                    reservations.removeIf{it.key == snapshot.key}
                     r_adapter.notifyDataSetChanged()
                 }
 
@@ -162,4 +204,15 @@ class Reservations : Fragment() {
         val date = sdf.format(timestamp)
         return date
     }
+
+    private fun write_prev_reservations(prev_reservation : reservation_Data_withkey){
+
+        database.child("p_Reservation").push().setValue(prev_reservation)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener{
+                Log.e("firebase", "Error while writing reservation")
+            }
+    }
+
 }
