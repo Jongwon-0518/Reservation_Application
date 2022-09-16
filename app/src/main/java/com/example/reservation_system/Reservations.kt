@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -151,6 +152,7 @@ class Reservations : Fragment() {
                 @RequiresApi(Build.VERSION_CODES.N)
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     reservations.removeIf{it.key == snapshot.key}
+                    Toast.makeText(context, "예약이 삭제되었습니다!", Toast.LENGTH_SHORT).show()
                     r_adapter.notifyDataSetChanged()
                 }
 
@@ -185,6 +187,7 @@ class Reservations : Fragment() {
                 @RequiresApi(Build.VERSION_CODES.N)
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     reservations.removeIf{it.key == snapshot.key}
+                    Toast.makeText(context, "예약이 삭제되었습니다!", Toast.LENGTH_SHORT).show()
                     r_adapter.notifyDataSetChanged()
                 }
 
