@@ -82,7 +82,7 @@ class ReservationMenu : AppCompatActivity() {
             // TODO : When menu clicked
             itemView.setOnClickListener {
                 val intent = Intent(applicationContext, MakeReservation::class.java)
-                intent.putExtra("menu_list_number", item.menu_list_number)
+                intent.putExtra("menu_name", item.menu_name)
                 intent.putExtra("room_code", room_code)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_up_enter, R.anim.slide_up_exit)

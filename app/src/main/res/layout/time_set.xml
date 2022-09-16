@@ -41,7 +41,6 @@
                         android:id="@+id/half_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
                         android:text="30분 간격" />
 
                     <RadioButton

@@ -28,6 +28,14 @@ class Timesetting : AppCompatActivity() {
         val finish_times = arrayListOf(Mon_finish_time, Tue_finish_time, Wed_finish_time, Thu_finish_time, Fri_finish_time, Sat_finish_time, Sun_finish_time)
 
         // Read Database
+        database.child("Room").child(room_code.toString()).child("나눈시간").get().addOnSuccessListener { it ->
+            val divtime = (it.value as Long).toInt()
+            if (divtime == 15) quarter_minute.isChecked = true else if (divtime == 30) half_minute.isChecked = true else full_minute.isChecked = true
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
+
+        // Read Database
         database.child("Room").child(room_code.toString()).child("요일").get().addOnSuccessListener { it ->
             val lst = it.value as ArrayList<*>
             for (day in 0..6) {
@@ -77,7 +85,7 @@ class Timesetting : AppCompatActivity() {
                 } else if (a == 1){
                     val st_int = st.toInt()
                     val fn_int = fn.toInt()
-                    if (st_int < 0 || st_int > 2400 || fn_int < 0 || fn_int > 2400 || (st_int % 100) > 59){
+                    if (st_int < 0 || st_int > 2400 || fn_int < 0 || fn_int > 2400 || (st_int % 100) > 59 || st.length != 4 || fn.length != 4){
                         Toast.makeText(this, "알맞은 시간 형태를 입력해주세요.", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
                     }
@@ -87,7 +95,7 @@ class Timesetting : AppCompatActivity() {
                     }
                 }
             }
-
+            val div = if (quarter_minute.isChecked == true) 15 else if (half_minute.isChecked == true) 30 else 60
             val taskMap = HashMap<String, Any>()
             val days = ArrayList<ArrayList<String>>()
             for (i in 0..6) {
@@ -95,6 +103,7 @@ class Timesetting : AppCompatActivity() {
             }
             taskMap.put("요일", days)
             database.child("Room").child(room_code.toString()).updateChildren(taskMap)
+            database.child("Room").child(room_code.toString()).updateChildren(mapOf("나눈시간" to div))
 
             this.finish()
         }

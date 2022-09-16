@@ -93,6 +93,7 @@ class Makeroom : AppCompatActivity() {
                 }
                 taskMap.put("요일", days)
                 database.child("Room").child(roomId).updateChildren(taskMap)
+                database.child("Room").child(roomId).updateChildren(mapOf("나눈시간" to 30))
             })
             .addOnFailureListener(OnFailureListener {
                 Toast.makeText(

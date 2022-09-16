@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
         >
@@ -35,16 +35,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="20dp"
-            />
-
-        <Button
-            android:id="@+id/button_reservation_last"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="예약하기"
-            android:textColor="#ffffff"
-            android:backgroundTint="#000000"
             />
 
     </LinearLayout>
