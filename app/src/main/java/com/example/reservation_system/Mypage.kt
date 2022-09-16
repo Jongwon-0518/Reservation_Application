@@ -18,7 +18,6 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_my_reservation_information.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
 
 
@@ -29,11 +28,18 @@ class Mypage : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val rootView = inflater.inflate(R.layout.fragment_mypage, container, false)
 
         val user = Firebase.auth.currentUser!!
 
+
+
         database = Firebase.database.reference
+        database.child("Room").orderByChild("maker").equalTo(getUserPhoneNumber()).get().addOnSuccessListener {
+            val list = it.value
+
+        }
 
         // 로그아웃
         rootView.button_logout.setOnClickListener{

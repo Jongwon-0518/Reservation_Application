@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +63,7 @@ class CreateManage : Fragment() {
                         room_Data(map["maker"] as String, map["title"] as String, map["information"] as String, (map["code"] as Long).toInt(), map["room_category"] as String, map["location"] as String, (map["like"] as Long).toInt())
                     )
                     adapter.notifyItemInserted(0)
+                    val result = DataList.size.toString()
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

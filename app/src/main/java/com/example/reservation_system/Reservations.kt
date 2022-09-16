@@ -33,18 +33,6 @@ class Reservations : Fragment() {
     lateinit var previous_Reservations : RecyclerView
 
     // TODO : 서버의 데이터베이스와 연결
-//    val now_My_Reservations = arrayListOf(
-//        room_Data("010-XXXX-XXXX", "1번방", "1번방 설명입니다.", 1, "health", ""),
-//        room_Data("010-XXXX-XXXX", "2번방", "2번방 입니다.", 2, "health", ""),
-//        room_Data("010-XXXX-XXXX", "3번방", "3번방 이에요.", 3, "health", ""),
-//        room_Data("010-XXXX-XXXX", "4번방", "4번방 입니다.", 4, "health", ""),
-//    )
-//    val previous_My_Reservations = arrayListOf(
-//        room_Data("010-XXXX-XXXX", "5번방", "5번방", 5, "health", ""),
-//        room_Data("010-XXXX-XXXX", "6번방", "6번방", 6, "health", ""),
-//        room_Data("010-XXXX-XXXX", "7번방", "7번방의 선물", 7, "health", ""),
-//        room_Data("010-XXXX-XXXX", "8번방", "8입니당", 8, "health", "")
-//    )
 
     val now_My_Reservations = arrayListOf<reservation_Data_withkey>()
     val previous_My_Reservations = arrayListOf<reservation_Data_withkey>()

@@ -100,7 +100,7 @@ class EditRoom : AppCompatActivity() {
                 ""
             }
             // Read Database
-            writeRoom(getMaker, room_number.toString(), getRoomTitle, getRoomCategory, getRoomInformation, getlocation.toString())
+            writeRoom(getMaker, room_number.toString(), getRoomTitle, getRoomCategory, getRoomInformation, getlocation)
 
             this.finish()
         }
@@ -147,10 +147,16 @@ class EditRoom : AppCompatActivity() {
     }
 
     private fun writeRoom(room_maker: String, roomId: String, title: String, room_category: String, information: String, location: String) {
-        val room = room_Data(room_maker, title, information, roomId.toInt(), room_category, location)
+        val update = hashMapOf<String, Any>()
+        update.put("maker", room_maker)
+        update.put("title", title)
+        update.put("information", information)
+        update.put("room_category", room_category)
+        update.put("location", location)
+        update.put("code", roomId.toInt())
 
         //데이터 저장
-        database.child("Room").child(roomId).setValue(room)
+        database.child("Room").child(roomId).updateChildren(update)
             .addOnSuccessListener(OnSuccessListener<Void?>
             //데이터베이스에 넘어간 이후 처리
             { Toast.makeText(applicationContext, "저장을 완료했습니다", Toast.LENGTH_SHORT).show() })
