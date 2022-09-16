@@ -132,8 +132,7 @@ class MakeReservation : AppCompatActivity() {
                     dynamicButton.text = time_array[j]
                     dynamicButton.layoutParams = layoutParams
                     dynamicButton.setOnClickListener {
-                        val arr = dynamicButton.text.toString().split(":")
-                        get_dialog(arr.joinToString(""))
+                        get_dialog(dynamicButton.text.toString())
                     }
                     line_linearlayout.addView(dynamicButton)
                 }
@@ -144,13 +143,13 @@ class MakeReservation : AppCompatActivity() {
     }
 
     private fun get_dialog(time : String) {
-        val month = (instance.get(Calendar.MONTH) + 1).toString()
+        val month = (instance.get(Calendar.MONTH) + 1).toString().padStart(2, '0')
         val date = instance.get(Calendar.DATE).toString()
         val builder = AlertDialog.Builder(this)
         builder.setTitle("$month 월 $date 일 $time")
         builder.setMessage(menu_name + "을 예약하시겠습니까?")
         builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-            val reservation_time = month + date + time
+            val reservation_time = month + date + time.slice(0..1) + time.slice(3..4)
             val reserve = reservation_Data(room_code, room_title, menu_name, reservation_time, getUserPhoneNumber())
             writeDatabase(reserve)
         }

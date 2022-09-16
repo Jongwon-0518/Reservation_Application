@@ -123,8 +123,7 @@ class Reservations : Fragment() {
                     val map = snapshot.value as HashMap<*, *>
                     val reservation_time = map["time"] as String
                     if (mode == 0){
-                        val currentTime = convertTimestampToDate(System.currentTimeMillis())
-                        if (reservation_time.toInt() < currentTime.toInt()){
+                        if (convertTimestampToDate(System.currentTimeMillis()).toInt() > reservation_time.toInt()){
                             // TODO : prev에 데이터 추가, 원래꺼에 삭제
                             return
                         }
@@ -132,7 +131,7 @@ class Reservations : Fragment() {
                     }
                     val time_format = reservation_time.slice(0..5) + ":" + reservation_time.slice(6..7)
                     reservations.add(0,
-                        reservation_Data((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, reservation_time, map["user"] as String)
+                        reservation_Data((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, time_format, map["user"] as String)
                     )
                     r_adapter.notifyItemInserted(0)
                 }
