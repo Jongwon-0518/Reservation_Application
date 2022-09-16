@@ -128,9 +128,8 @@ class Reservations : Fragment() {
                             return
                         }
                     }
-                    val time_format = reservation_time.slice(0..5) + ":" + reservation_time.slice(6..7)
                     reservations.add(0,
-                        reservation_Data((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, time_format, map["user"] as String)
+                        reservation_Data((map["code"] as Long).toInt(), map["title"] as String, map["menu"] as String, reservation_time, map["user"] as String)
                     )
                     r_adapter.notifyItemInserted(0)
                 }
