@@ -42,9 +42,7 @@ class Updatelog: AppCompatActivity() {
 
         database.child("Update").orderByChild("date")
             .addValueEventListener(object : ValueEventListener {
-                @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    // 도중 삭제 가능)
                     val list: List<String> = snapshot.value as List<String>
                     for (i in 1..list.size-1 step(1)) {
                         val map = list[i] as HashMap<*, *>
