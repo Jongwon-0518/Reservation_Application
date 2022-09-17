@@ -48,8 +48,8 @@ class Updatelog: AppCompatActivity() {
                     val list: List<String> = snapshot.value as List<String>
                     for (i in 1..list.size-1 step(1)) {
                         val map = list[i] as HashMap<*, *>
-                        println(map)
-                        Update_list.add(update((map["date"] as Long).toString(), map["info"] as String))
+                        Update_list.add(0, update((map["date"] as Long).toString(), map["info"] as String))
+                        adapter.notifyItemInserted(0)
                     }
                 }
 
