@@ -76,6 +76,9 @@
         <activity android:name=".MakeReservation" />
         <activity android:name=".EditRoom" />
         <activity android:name=".Timesetting" />
+        <activity
+            android:name=".Updatelog"
+            android:exported="false" />
     </application>
 
 </manifest>

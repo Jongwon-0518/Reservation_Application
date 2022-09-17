@@ -45,16 +45,11 @@
                     android:text="닉네임 변경"/>
 
                 <Button
+                    android:id="@+id/update_log"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="설정"/>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="공지사항"/>
+                    android:text="업데이트 내역"/>
 
                 <Button
                     android:id="@+id/button_logout"

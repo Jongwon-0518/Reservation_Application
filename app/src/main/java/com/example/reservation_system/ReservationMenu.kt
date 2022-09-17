@@ -48,7 +48,7 @@ class ReservationMenu : AppCompatActivity() {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    // 도중 삭제 가능
+                    // 도중 삭제 가능)
                     if (snapshot.value != null){
                         (snapshot.value as HashMap<*, *>).forEach { snap ->
                             val map = snap.value as HashMap<*, *>

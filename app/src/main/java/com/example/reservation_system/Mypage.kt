@@ -75,6 +75,11 @@ class Mypage : Fragment() {
             builder.show()
         }
 
+        rootView.update_log.setOnClickListener{
+            val intent = Intent(context, Updatelog::class.java)
+            startActivity(intent)
+        }
+
         rootView.button_change_nickname.setOnClickListener{
             val builder = AlertDialog.Builder(this.context)
             builder.setTitle("닉네임을 입력해주세요.")

@@ -36,5 +36,10 @@ class room_Menu(
     var menu_cost: String
 )
 
+class update(
+    var date: String,
+    var info: String
+)
+
 class reservation_Data(var code : Int, var title : String, var menu : String, var time : String, var user : String)
 class reservation_Data_withkey(var code : Int, var title : String, var menu : String, var time : String, var user : String, var key : String)
