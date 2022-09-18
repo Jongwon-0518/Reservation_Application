@@ -3,8 +3,6 @@
 # 프로젝트 설명
 
 
-
-
 프로젝트명 : Reservation App
 
 용도 : 오픈 예약 시스템으로 누구나 각자의 예약 시스템을 만들어 사용 가능하다.
@@ -15,23 +13,9 @@
 ## 프로젝트 구조
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 실행 : 로딩창 -> 로그인(or -> 회원가입) -> MainActivity
 
 MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
-
-
 
 
 ## Skills
