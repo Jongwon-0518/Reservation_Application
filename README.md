@@ -10,22 +10,12 @@
 예상 이용자 : 사업을 시작하시는 분
 
 
-## 프로젝트 구조 및 사용법
+## 프로젝트 구조
 
 
-실행 : 로딩창 -> 로그인
+실행 : 로딩창 -> 로그인(or -> 회원가입) -> MainActivity
 
-MainActivity : BottomNavigationView와 ViewPager2을 이용하여 5개의 Fragment
-
-예약공간 생성 : 생성 및 관리 fragment -> MAKE
-
-예약공간 편집 : 생성한 방 클릭 -> 예약 가능 시간, 메뉴 추가, 기존 방 정보 수정, 삭제 가능
-
-예약하는 방법 : 검색 or Home에서 원하는 가게 클릭 -> 메뉴, 시간 설정 후 예약
-
-예약 확인하는 방법 : MainActivity의 예약 확인 Framgent(Reservations.kt)
-
-로그아웃 및 회원 탈퇴 : MYpage
+MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 
 
 
