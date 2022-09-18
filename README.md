@@ -24,31 +24,31 @@ MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 
 # Application 실행
 
-#### 회원가입 절차
+### 회원가입 절차
 
 회원 가입시 해당 단말기의 전화번호를 가져오기 위한 Permission을 요청 후 전화번호를 가져와 이를 아이디로 이용
 
 ![회원가입](https://user-images.githubusercontent.com/78264248/190889077-0fb24113-1ee7-4b5b-8426-8f609eaac878.gif)
 
-#### 예약하는 방법
+### 예약하는 방법
 
 검색 or Home에서 원하는 예약공간을 클릭 후 메뉴와 시간을 클릭
 
 ![예약하기](https://user-images.githubusercontent.com/78264248/190889084-db066b33-e0b8-4184-8b1a-ea8bb59c5ed7.gif)
 
-#### 본인의 예약공간 만들기(주소검색)
+### 본인의 예약공간 만들기(주소검색)
 
 생성 및 관리에서 추가 가능, 주소검색 기능을 이용하여 위치 표시
 
 ![방만들기](https://user-images.githubusercontent.com/78264248/190889089-e3d6d71a-6c41-49aa-9124-30a40d587243.gif)
 
-#### 본인의 예약공간 편집
+### 본인의 예약공간 편집
 
 생성 및 관리에서 편집할 예약공간 클릭 후 시간, 메뉴, 편집, 삭제를 진행
 
 ![방편집mp4](https://user-images.githubusercontent.com/78264248/190889091-47fa55d7-b083-4c9c-87ce-dbddc0dd1af8.gif)
 
-#### 본인의 예약공간 편집 확인 후 Mypage
+### 본인의 예약공간 편집 확인 후 Mypage
 
 MYpage에서 닉네임 변경, 회원 탈퇴, 로그아웃 가능
 
