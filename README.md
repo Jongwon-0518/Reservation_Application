@@ -26,7 +26,7 @@
 #### 본인의 예약공간 편집(주소검색)
 ![방편집mp4](https://user-images.githubusercontent.com/78264248/190889091-47fa55d7-b083-4c9c-87ce-dbddc0dd1af8.gif)
 
-#### Mypage 확인과 회원탈퇴 과정
+#### Mypage
 ![내방소개후회원탈퇴](https://user-images.githubusercontent.com/78264248/190889095-fde50cd6-7424-49a5-8b23-9f4a448a0596.gif)
 
 LICENSE
