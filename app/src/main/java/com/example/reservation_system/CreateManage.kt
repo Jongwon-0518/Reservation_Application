@@ -25,9 +25,6 @@ import kotlinx.android.synthetic.main.fragment_createmanage.*
 import kotlinx.android.synthetic.main.fragment_createmanage.view.*
 import kotlinx.android.synthetic.main.room_list.view.*
 
-
-//              TODO : 메뉴 지울 때, 메뉴 edit, recyclerView에서 이동이 menu_list_number에 반영
-//              TODO : 메뉴에서 시간고를때
 class CreateManage : Fragment() {
 
     private lateinit var make_room_recylerView : RecyclerView
