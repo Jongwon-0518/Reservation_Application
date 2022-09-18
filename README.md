@@ -34,6 +34,8 @@ MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 
 검색 or Home에서 원하는 예약공간을 클릭 후 메뉴와 시간을 클릭
 
+9/16 기준으로 9/14 의 네일아트 가게 예약은 이전 예약인 하단부로 내려감
+
 ![예약하기](https://user-images.githubusercontent.com/78264248/190889084-db066b33-e0b8-4184-8b1a-ea8bb59c5ed7.gif)
 
 ### 본인의 예약공간 만들기(주소검색)
