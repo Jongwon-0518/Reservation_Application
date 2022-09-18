@@ -23,7 +23,7 @@
 #### 본인의 예약공간 만들기
 ![방만들기](https://user-images.githubusercontent.com/78264248/190889089-e3d6d71a-6c41-49aa-9124-30a40d587243.gif)
 
-#### 본인의 예약공간 편집
+#### 본인의 예약공간 편집(주소검색)
 ![방편집mp4](https://user-images.githubusercontent.com/78264248/190889091-47fa55d7-b083-4c9c-87ce-dbddc0dd1af8.gif)
 
 #### Mypage 확인과 회원탈퇴 과정
