@@ -1,6 +1,6 @@
 # Reservation_Application
 
-#프로젝트 설명
+# 프로젝트 설명
 
 프로젝트명 : Reservation App
 
