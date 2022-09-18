@@ -55,10 +55,3 @@ MYpage에서 닉네임 변경, 회원 탈퇴, 로그아웃 가능
 ![내방소개후회원탈퇴](https://user-images.githubusercontent.com/78264248/190889095-fde50cd6-7424-49a5-8b23-9f4a448a0596.gif)
 
 
-LICENSE
-
-✔ 라이선스 : 저작물의 수정 배포에 대한 권한이나 저작권들에 대한 조항들
-✔ 보통 MIT License를 많이 사용하고 BSD 라이선스도 많이 사용한다
-
-
-
