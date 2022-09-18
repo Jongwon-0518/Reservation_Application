@@ -25,6 +25,8 @@ MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 # Application 실행
 
 #### 회원가입 절차
+
+회원 가입시 해당 단말기의 전화번호를 가져오기 위한 Permission을 요청 후 전화번호를 가져와 이를 아이디로 이용
 ![회원가입](https://user-images.githubusercontent.com/78264248/190889077-0fb24113-1ee7-4b5b-8426-8f609eaac878.gif)
 
 #### 예약하는 방법
