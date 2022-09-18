@@ -1,6 +1,6 @@
 # Reservation_Application
 
-프로젝트 설명
+#프로젝트 설명
 
 프로젝트명 : Reservation App
 
@@ -8,18 +8,26 @@
 
 예상 이용자 : 사업을 시작하시는 분
 
-Skills
+## Skills
 
 <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white"><img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 
-Application 사용법
+# Application 사용법
 
+#### 회원가입 절차
 ![회원가입](https://user-images.githubusercontent.com/78264248/190889077-0fb24113-1ee7-4b5b-8426-8f609eaac878.gif)
+
+#### 예약하는 방법
 ![예약하기](https://user-images.githubusercontent.com/78264248/190889084-db066b33-e0b8-4184-8b1a-ea8bb59c5ed7.gif)
+
+#### 본인의 예약공간 만들기
 ![방만들기](https://user-images.githubusercontent.com/78264248/190889089-e3d6d71a-6c41-49aa-9124-30a40d587243.gif)
+
+#### 본인의 예약공간 편집
 ![방편집mp4](https://user-images.githubusercontent.com/78264248/190889091-47fa55d7-b083-4c9c-87ce-dbddc0dd1af8.gif)
+
+#### Mypage 확인과 회원탈퇴 과정
 ![내방소개후회원탈퇴](https://user-images.githubusercontent.com/78264248/190889095-fde50cd6-7424-49a5-8b23-9f4a448a0596.gif)
-✔ 코드설명, 후기(짧고 간결하게 써야함, 내용이 길어질 경우 블로그에 작성한뒤 링크로 연결해주는게 좋다)
 
 LICENSE
 
