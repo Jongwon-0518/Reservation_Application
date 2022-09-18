@@ -3,8 +3,11 @@
 프로젝트 설명
 
 프로젝트명 : Reservation App
+
 용도 : 오픈 예약 시스템으로 누구나 각자의 예약 시스템을 만들어 사용 가능하다.
+
 예상 이용자 : 사업을 시작하시는 분
+
 Badge로  
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 
