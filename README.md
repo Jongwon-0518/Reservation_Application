@@ -39,12 +39,6 @@ MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 #### 본인의 예약공간 편집 확인 후 Mypage
 ![내방소개후회원탈퇴](https://user-images.githubusercontent.com/78264248/190889095-fde50cd6-7424-49a5-8b23-9f4a448a0596.gif)
 
-## Used API
-
-
-
-
-
 
 LICENSE
 
