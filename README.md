@@ -42,6 +42,8 @@ MainActivity : BottomNavigationView와 ViewPager2을 이용한 5개의 Fragment
 
 생성 및 관리에서 추가 가능, 주소검색 기능을 이용하여 위치 표시
 
+요일별로 휴무/시간/시간 간격(15분, 30분, 60분) 선택 후 확정
+
 ![방만들기](https://user-images.githubusercontent.com/78264248/190889089-e3d6d71a-6c41-49aa-9124-30a40d587243.gif)
 
 ### 본인의 예약공간 편집
