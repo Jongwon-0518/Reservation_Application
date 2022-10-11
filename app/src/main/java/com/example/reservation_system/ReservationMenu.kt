@@ -25,7 +25,6 @@ import kotlin.properties.Delegates
 
 class ReservationMenu : AppCompatActivity() {
 
-    private lateinit var database : DatabaseReference
     private lateinit var menu_RecylerView : RecyclerView
     private var room_code by Delegates.notNull<Int>()
 

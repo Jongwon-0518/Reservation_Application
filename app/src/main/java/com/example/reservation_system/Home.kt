@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.room_list.view.*
 class Home : Fragment() {
 
     lateinit var recyclerView1: RecyclerView
-    private lateinit var database: DatabaseReference
 
     val DataList = ArrayList<room_Data>()
 

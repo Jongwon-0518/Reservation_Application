@@ -29,7 +29,6 @@ import java.text.SimpleDateFormat
 
 class Reservations : Fragment() {
 
-    lateinit var database : DatabaseReference
     lateinit var my_Reservations : RecyclerView
     lateinit var previous_Reservations : RecyclerView
 

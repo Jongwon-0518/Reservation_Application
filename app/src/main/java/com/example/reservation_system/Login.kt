@@ -18,10 +18,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
-
-    // TODO : 로그아웃 진행 시 저장된 정보 삭제
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

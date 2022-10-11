@@ -22,7 +22,6 @@ import kotlin.properties.Delegates
 
 class MakeMenu : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
     private lateinit var key: String
     private var menu_list_number by Delegates.notNull<Int>()
 

@@ -23,23 +23,12 @@ import kotlinx.android.synthetic.main.fragment_mypage.view.*
 
 class Mypage : Fragment() {
 
-
-    private lateinit var database: DatabaseReference
-
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_mypage, container, false)
-
         val user = Firebase.auth.currentUser!!
-
-
-
         database = Firebase.database.reference
-        database.child("Room").orderByChild("maker").equalTo(getUserPhoneNumber()).get().addOnSuccessListener {
-            val list = it.value
-
-        }
 
         // 로그아웃
         rootView.button_logout.setOnClickListener{
@@ -48,6 +37,7 @@ class Mypage : Fragment() {
         }
         var name = getUserName()
         val email = getUseremail()
+        // Auth의 email형식 지우고 번호만 남기기
         val phonenumber : String = email!!.replace("@abc.com", "")
 
         rootView.MyPage_title.text = name + "님 환영합니다."

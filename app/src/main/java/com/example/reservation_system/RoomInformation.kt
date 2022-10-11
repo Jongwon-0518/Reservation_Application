@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.room_information.*
 
 class RoomInformation : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

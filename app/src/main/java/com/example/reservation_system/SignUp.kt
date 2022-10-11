@@ -41,11 +41,6 @@ class SignUp : AppCompatActivity() {
         Manifest.permission.READ_SMS
     )
 
-    // TODO : 아이디 만들고나면 저장된거 지우기
-    lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("HardwareIds", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,8 +77,8 @@ class SignUp : AppCompatActivity() {
             val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             var userPhone = tm.line1Number
             // userPhone = userPhone.replace("+82", "0")
-            // TODO : 나중에 지우기
-            userPhone = userPhone.replace("+1555521555", "")
+            // TODO : Erase Test
+            userPhone = userPhone.replace("+15555215554", "01098765432")
 
             Log.d(TAG, "전화번호 : [ getLine1Number ] >>> "+userPhone)
             textview_signup_number.text = userPhone

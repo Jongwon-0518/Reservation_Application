@@ -23,7 +23,6 @@ import kotlin.properties.Delegates
 
 class Updatelog: AppCompatActivity() {
 
-    private lateinit var database : DatabaseReference
     private lateinit var updatelog_RecylerView : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {

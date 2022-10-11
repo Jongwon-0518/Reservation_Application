@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.make_room.*
 class Makeroom : AppCompatActivity() {
 
     private val SEARCH_ADDRESS_ACTIVITY = 1002
-    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

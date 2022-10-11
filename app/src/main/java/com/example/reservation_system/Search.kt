@@ -26,7 +26,6 @@ class Search : Fragment() {
 
     private lateinit var searchView : SearchView
     private lateinit var serach_room_recylerView : RecyclerView
-    private lateinit var database: DatabaseReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

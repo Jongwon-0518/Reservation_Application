@@ -28,7 +28,6 @@ import kotlinx.android.synthetic.main.room_list.view.*
 class CreateManage : Fragment() {
 
     private lateinit var make_room_recylerView : RecyclerView
-    private lateinit var database: DatabaseReference
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

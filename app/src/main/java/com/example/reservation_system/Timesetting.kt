@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.time_set.*
 
 class Timesetting : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.reservation_system.R.layout.time_set)

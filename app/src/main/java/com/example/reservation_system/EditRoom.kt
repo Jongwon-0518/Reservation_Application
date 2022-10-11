@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.room_information.*
 
 class EditRoom : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
     private val SEARCH_ADDRESS_ACTIVITY = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {

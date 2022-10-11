@@ -28,7 +28,6 @@ import kotlin.properties.Delegates
 class Menusetting : AppCompatActivity() {
 
     private lateinit var menu_RecylerView : RecyclerView
-    private lateinit var database: DatabaseReference
     private var room_code by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
