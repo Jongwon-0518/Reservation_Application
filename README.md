@@ -14,7 +14,7 @@ Target : 사업자, 예약자
 
 Red : 본인 파트, Blue : 팀원 파트, Yellow : 공동 파트
 
-![image](https://user-images.githubusercontent.com/78264248/198826298-d88da556-4fdf-49bb-b263-2b9945fa9160.png)
+![image](./graph.png)
 
 ## Skills
 
