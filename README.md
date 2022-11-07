@@ -1,24 +1,22 @@
 # Reservation_Application
 
-# 프로젝트 설명
-
-
 프로젝트명 : Reservation App
 
-설명 : 오픈 예약 시스템 Application
+팀원 : 2인 ([이종원](https://github.com/Jongwon-0518)/[이승훈](https://github.com/leeseunghun98))
+
+설명 : 오픈 예약 시스템 서비스를 제공하는 Android Application
 
 Target : 사업자, 예약자
 
+## Skills
+
+<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white"><img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 
 ## 프로젝트 구조
 
 Red : 본인 파트, Blue : 팀원 파트, Yellow : 공동 파트
 
 ![image](./graph.png)
-
-## Skills
-
-<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white"><img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"><img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 
 # Application 실행
 
